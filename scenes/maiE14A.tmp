@@ -1,0 +1,168 @@
+[gd_scene load_steps=21 format=3 uid="uid://dc6bx5w13ev0i"]
+
+[ext_resource type="PackedScene" uid="uid://dolejrjv5sh2d" path="res://scenes/player.tscn" id="1_okep1"]
+[ext_resource type="Script" path="res://scripts/systems/state_machine/state_machine.gd" id="2_6nn1i"]
+[ext_resource type="Script" path="res://scripts/systems/state_machine/game_idle.gd" id="3_pemty"]
+[ext_resource type="Script" path="res://scripts/systems/state_machine/game_start.gd" id="3_w4hha"]
+[ext_resource type="Script" path="res://scripts/systems/state_machine/enemy_wave.gd" id="4_vwspn"]
+[ext_resource type="Script" path="res://scripts/systems/entity/enemy_count.gd" id="6_73cjn"]
+[ext_resource type="Script" path="res://scripts/systems/waves/wave.gd" id="6_fif7f"]
+[ext_resource type="Script" path="res://scripts/systems/waves/enemy_sequence.gd" id="7_7ujij"]
+[ext_resource type="Shader" path="res://shaders/post_processing.gdshader" id="7_ahyao"]
+[ext_resource type="Theme" uid="uid://cdp1vqedgum7d" path="res://scenes/menu.tres" id="8_pjfef"]
+
+[sub_resource type="Resource" id="Resource_yhalk"]
+script = ExtResource("7_7ujij")
+enemy = 0
+amount = 2
+time = 3.0
+
+[sub_resource type="Resource" id="Resource_lhi3u"]
+script = ExtResource("6_fif7f")
+enemy_sequences = Array[ExtResource("7_7ujij")]([SubResource("Resource_yhalk")])
+current_sequence = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m20qs"]
+size = Vector2(1920, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxr43"]
+size = Vector2(1920, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qyla8"]
+size = Vector2(20, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00gao"]
+size = Vector2(20, 1080)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o160b"]
+shader = ExtResource("7_ahyao")
+
+[sub_resource type="Gradient" id="Gradient_6bo3b"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rupqn"]
+gradient = SubResource("Gradient_6bo3b")
+
+[sub_resource type="Environment" id="Environment_rkgx4"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.15
+glow_blend_mode = 0
+fog_light_color = Color(1, 1, 1, 1)
+fog_sun_scatter = 0.95
+adjustment_color_correction = SubResource("GradientTexture1D_rupqn")
+
+[node name="main" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+editor_draw_limits = true
+
+[node name="Player" parent="." instance=ExtResource("1_okep1")]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_6nn1i")
+initial_state = NodePath("GameStart")
+
+[node name="GameStart" type="Node" parent="StateMachine" node_paths=PackedStringArray("progress", "progress_text")]
+script = ExtResource("3_w4hha")
+progress = NodePath("../../CanvasLayer/ProgressBar")
+progress_text = NodePath("../../CanvasLayer/Progress")
+
+[node name="GameIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("progress", "progress_text")]
+script = ExtResource("3_pemty")
+progress = NodePath("../../CanvasLayer/ProgressBar")
+progress_text = NodePath("../../CanvasLayer/Progress")
+
+[node name="EnemyWave" type="Node" parent="StateMachine" node_paths=PackedStringArray("progress", "progress_text", "wave_counter")]
+script = ExtResource("4_vwspn")
+waves = Array[ExtResource("6_fif7f")]([SubResource("Resource_lhi3u")])
+progress = NodePath("../../CanvasLayer/ProgressBar")
+progress_text = NodePath("../../CanvasLayer/Progress")
+wave_counter = NodePath("../../CanvasLayer/WaveCounter")
+
+[node name="EnemyCount" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_73cjn")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 540)
+shape = SubResource("RectangleShape2D_m20qs")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -494)
+shape = SubResource("RectangleShape2D_rxr43")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-960, 0)
+shape = SubResource("RectangleShape2D_qyla8")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(960, 0)
+shape = SubResource("RectangleShape2D_00gao")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_o160b")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+visible = false
+offset_right = 1920.0
+offset_bottom = 46.0
+value = 100.0
+show_percentage = false
+
+[node name="Progress" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -960.0
+offset_right = 960.0
+offset_bottom = 46.0
+grow_horizontal = 2
+theme = ExtResource("8_pjfef")
+theme_override_font_sizes/font_size = 33
+text = "3.0/3.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="deathhaha" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+offset_left = 166.0
+offset_top = 289.0
+offset_right = 1593.0
+offset_bottom = 835.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 400
+text = "u ded :("
+
+[node name="WaveCounter" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("8_pjfef")
+text = "Wave: 1"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rkgx4")
+
+[connection signal="child_entered_tree" from="StateMachine/EnemyWave" to="EnemyCount" method="_on_enemy_wave_child_entered_tree"]
+[connection signal="child_exiting_tree" from="StateMachine/EnemyWave" to="EnemyCount" method="_on_enemy_wave_child_exiting_tree"]

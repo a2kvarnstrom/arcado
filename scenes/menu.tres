@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cdp1vqedgum7d"]
+
+[ext_resource type="FontFile" uid="uid://dgagccdioqel2" path="res://fonts/TrajanPro-Bold.otf" id="1_mhori"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7du05"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6dy6r"]
+
+[resource]
+default_font = ExtResource("1_mhori")
+default_font_size = 70
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_focus_color = Color(0.94902, 0.94902, 0.45098, 1)
+Button/colors/font_hover_color = Color(0.94902, 0.94902, 0.45098, 1)
+Button/colors/icon_focus_color = Color(0.94902, 0.94902, 0.45098, 1)
+Button/colors/icon_hover_color = Color(0.94902, 0.94902, 0.45098, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_7du05")
+Button/styles/normal = SubResource("StyleBoxEmpty_6dy6r")

@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://dolejrjv5sh2d"]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_n4mhy"]
+[ext_resource type="Script" path="res://scenes/circle.gd" id="2_q8roa"]
+[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="3_8fvqg"]
+[ext_resource type="Script" path="res://scripts/systems/entity/hitbox.gd" id="3_21x68"]
+[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="4_4m4tg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c2wpq"]
+radius = 55.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s4w6f"]
+radius = 55.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_n4mhy")
+
+[node name="circle" type="Node2D" parent="."]
+script = ExtResource("2_q8roa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_c2wpq")
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("3_21x68")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_c2wpq")
+
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health", "healthbar")]
+collision_mask = 2
+script = ExtResource("4_4m4tg")
+health = NodePath("../Health")
+healthbar = NodePath("../ProgressBar")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_s4w6f")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_8fvqg")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_top = 90.0
+offset_right = 75.0
+offset_bottom = 120.0
+grow_horizontal = 2
+step = 1.0
+value = 100.0
+
+[node name="DeathReset" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
+[connection signal="timeout" from="DeathReset" to="." method="_on_death_reset_timeout"]

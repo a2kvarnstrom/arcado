@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://votgru8trgx8"]
+
+[ext_resource type="Script" path="res://scripts/enemies/triangle_enemy.gd" id="1_c0kp1"]
+[ext_resource type="PackedScene" uid="uid://5q38gco3sk5l" path="res://scenes/laser.tscn" id="2_oglgs"]
+[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="5_lkrhj"]
+[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="6_4let0"]
+
+[node name="TriangleEnemy" type="CharacterBody2D"]
+script = ExtResource("1_c0kp1")
+
+[node name="Laser" parent="." instance=ExtResource("2_oglgs")]
+
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("healthbar")]
+script = ExtResource("5_lkrhj")
+max_health = 20.0
+healthbar = NodePath("../ProgressBar")
+
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("6_4let0")
+health = NodePath("../Health")
+pierce = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hurtbox"]
+polygon = PackedVector2Array(0, -55, 55, 55, -55, 55)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -55.0
+offset_top = 58.0
+offset_right = 55.0
+offset_bottom = 63.0
+max_value = 20.0
+step = 1.0
+value = 20.0
+show_percentage = false
+
+[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]

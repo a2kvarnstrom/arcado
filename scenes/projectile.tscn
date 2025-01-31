@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp64pg8j7buhl"]
+
+[ext_resource type="Script" path="res://scripts/enemies/projectile.gd" id="1_mo4i7"]
+[ext_resource type="Script" path="res://scripts/systems/entity/hitbox.gd" id="2_lx2ac"]
+[ext_resource type="Script" path="res://scripts/systems/entity/pierce.gd" id="3_38nox"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8q0j"]
+size = Vector2(32, 12)
+
+[node name="Projectile" type="CharacterBody2D"]
+script = ExtResource("1_mo4i7")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("pierce")]
+collision_layer = 2
+script = ExtResource("2_lx2ac")
+damage = 10.0
+pierce = NodePath("../Pierce")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_y8q0j")
+
+[node name="Pierce" type="Node" parent="."]
+script = ExtResource("3_38nox")
+
+[connection signal="pierce_depleted" from="Pierce" to="." method="_on_pierce_pierce_depleted"]
