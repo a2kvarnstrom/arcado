@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dc6bx5w13ev0i"]
+[gd_scene load_steps=37 format=3 uid="uid://dc6bx5w13ev0i"]
 
 [ext_resource type="PackedScene" uid="uid://dolejrjv5sh2d" path="res://scenes/player.tscn" id="1_okep1"]
 [ext_resource type="Script" path="res://scripts/systems/state_machine/state_machine.gd" id="2_6nn1i"]
@@ -9,9 +9,8 @@
 [ext_resource type="Script" path="res://scripts/systems/waves/wave.gd" id="6_fif7f"]
 [ext_resource type="Script" path="res://scripts/systems/waves/enemy_sequence.gd" id="7_7ujij"]
 [ext_resource type="Shader" path="res://shaders/post_processing.gdshader" id="7_ahyao"]
-[ext_resource type="PackedScene" uid="uid://sgh28otitqw3" path="res://upgrades_ui.tscn" id="9_yqqm1"]
 [ext_resource type="Theme" uid="uid://cdp1vqedgum7d" path="res://themes/menu.tres" id="8_pjfef"]
-
+[ext_resource type="PackedScene" uid="uid://sgh28otitqw3" path="res://scenes/upgrades_ui.tscn" id="9_yqqm1"]
 
 [sub_resource type="Resource" id="Resource_yhalk"]
 script = ExtResource("7_7ujij")
@@ -117,6 +116,15 @@ size = Vector2(20, 1080)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o160b"]
 shader = ExtResource("7_ahyao")
+shader_parameter/r_displacement = Vector2(3, 0)
+shader_parameter/g_displacement = Vector2(0, 0)
+shader_parameter/b_displacement = Vector2(-3, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_linkp"]
+shader = ExtResource("7_ahyao")
+shader_parameter/r_displacement = Vector2(3, 0)
+shader_parameter/g_displacement = Vector2(0, 0)
+shader_parameter/b_displacement = Vector2(-3, 0)
 
 [sub_resource type="Gradient" id="Gradient_6bo3b"]
 
@@ -154,15 +162,12 @@ script = ExtResource("3_pemty")
 progress = NodePath("../../CanvasLayer/ProgressBar")
 progress_text = NodePath("../../CanvasLayer/Progress")
 
-[node name="EnemyWave" type="Node" parent="StateMachine" node_paths=PackedStringArray("progress", "progress_text", "wave_counter", "seq_counter", "max_wave_counter", "max_seq_counter")]
+[node name="EnemyWave" type="Node" parent="StateMachine" node_paths=PackedStringArray("progress", "progress_text", "wave_counter")]
 script = ExtResource("4_vwspn")
 waves = Array[ExtResource("6_fif7f")]([SubResource("Resource_lhi3u"), SubResource("Resource_6216w"), SubResource("Resource_5kgk1"), SubResource("Resource_chlqa"), SubResource("Resource_58r3t"), SubResource("Resource_vpxms")])
 progress = NodePath("../../CanvasLayer/ProgressBar")
 progress_text = NodePath("../../CanvasLayer/Progress")
 wave_counter = NodePath("../../CanvasLayer/WaveCounter")
-seq_counter = NodePath("../../CanvasLayer/SeqCounter")
-max_wave_counter = NodePath("../../CanvasLayer/MaxWaveCounter")
-max_seq_counter = NodePath("../../CanvasLayer/MaxSeqCounter")
 
 [node name="EnemyCount" type="Node" parent="."]
 unique_name_in_owner = true
@@ -189,25 +194,6 @@ position = Vector2(960, 0)
 shape = SubResource("RectangleShape2D_00gao")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="UpgradesUI" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("9_yqqm1")]
-visible = false
-player = NodePath("../../Player")
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_o160b")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -960.0
-offset_top = -540.0
-offset_right = 960.0
-offset_bottom = 540.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0)
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
 visible = false
@@ -253,41 +239,25 @@ grow_vertical = 0
 theme = ExtResource("8_pjfef")
 text = "Wave: 1"
 
-[node name="MaxWaveCounter" type="Label" parent="CanvasLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -146.0
-offset_right = 498.0
-offset_bottom = -75.0
-grow_vertical = 0
-theme = ExtResource("8_pjfef")
-text = "Max Waves: 1"
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_o160b")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
-[node name="MaxSeqCounter" type="Label" parent="CanvasLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 1464.0
-offset_top = -152.0
-offset_right = 1962.0
-offset_bottom = -81.0
-grow_vertical = 0
-theme = ExtResource("8_pjfef")
-text = "Max Seq: 1"
-
-[node name="SeqCounter" type="Label" parent="CanvasLayer"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -279.0
-offset_top = -71.0
-grow_horizontal = 0
-grow_vertical = 0
-theme = ExtResource("8_pjfef")
-text = "Seq: 0"
+[node name="UpgradesUI" parent="CanvasLayer" instance=ExtResource("9_yqqm1")]
+visible = false
+material = SubResource("ShaderMaterial_linkp")
+script = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rkgx4")

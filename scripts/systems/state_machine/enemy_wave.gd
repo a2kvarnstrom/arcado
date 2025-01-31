@@ -6,9 +6,6 @@ extends State
 @export var progress: ProgressBar
 @export var progress_text: Label
 @export var wave_counter: Label
-@export var seq_counter: Label
-@export var max_wave_counter: Label
-@export var max_seq_counter: Label
 
 var time: float
 
@@ -43,12 +40,9 @@ func enter() -> void:
 
 func update(delta: float) -> void:
 	wave_counter.text = "Wave: " + str(current_wave + 1)
-	seq_counter.text = "Seq: " + str(seq_id)
 	wave_timer -= delta
 	progress.value = wave_timer
-	progress_text.text = str("%.2f" % (progress.value)) + "/" + str("%.2f" % (progress.max_value)) + " seconds left"
-	max_wave_counter.text = "Max Waves: " + str(waves.size())
-	max_seq_counter.text = "Max Seq: " + str(waves[current_wave].enemy_sequences.size()-1)
+	progress_text.text = str("%.2f" % (progress.value)) + "/" + str("%d" % (progress.max_value)) + " seconds left"
 
 func physics_update(_delta: float) -> void:
 	spawn_enemy()
