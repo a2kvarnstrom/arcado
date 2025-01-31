@@ -9,11 +9,11 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_dmg_pressed() -> void:
-	pass # Replace with function body.
+	player.dmg += 3
 
 
 func _on_hp_pressed() -> void:
-	pass # Replace with function body.
+	player.health.health += 5
 
 
 func _on_def_pressed() -> void:
@@ -21,7 +21,7 @@ func _on_def_pressed() -> void:
 
 
 func _on_atkspeed_pressed() -> void:
-	pass # Replace with function body.
+	player.atk_speed += 0.1
 
 
 func _on_mvmntspeed_pressed() -> void:

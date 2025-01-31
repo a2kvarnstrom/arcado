@@ -13,6 +13,8 @@ var shoot_cooldown: float = 0.0
 var radius: float = 80.0
 var angle: float = 0.0
 var spin_speed: float = 0.0
+var dmg: float = 10
+var atk_speed: float = 2
 
 func _process(delta: float) -> void:
 	circular_motion()
@@ -53,7 +55,7 @@ func shoot() -> void:
 	if(shoot_cooldown > 0.0):
 		return
 	
-	shoot_cooldown = 0.5
+	shoot_cooldown = 1/atk_speed
 	spin_speed = 0.3
 	
 	var direction: float = (circle.global_position - global_position).angle() + deg_to_rad(90)
@@ -67,6 +69,7 @@ func shoot() -> void:
 	instance.get_node("Hitbox").set_collision_layer_value(2, false)
 	instance.get_node("Hitbox").set_collision_mask_value(3, true)
 	instance.get_node("Hitbox").set_collision_mask_value(1, false)
+	instance.damage = dmg
 	main.add_child.call_deferred(instance)
 
 func circular_motion():
