@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://sgh28otitqw3"]
+
+[ext_resource type="Script" path="res://upgrades_ui.gd" id="1_2cy7m"]
+[ext_resource type="StyleBox" uid="uid://we3n4sot0pw3" path="res://scenes/new_style_box_flat.tres" id="2_4aft5"]
+[ext_resource type="Theme" uid="uid://cdp1vqedgum7d" path="res://scenes/menu.tres" id="2_k3qmv"]
+
+[node name="UpgradesUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_2cy7m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/separation = 100
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Dmg" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_k3qmv")
+theme_override_styles/normal = ExtResource("2_4aft5")
+text = "+3 dmg"
+
+[node name="Hp" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_k3qmv")
+theme_override_styles/normal = ExtResource("2_4aft5")
+text = "+5 hp"
+
+[node name="Def" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_k3qmv")
+theme_override_styles/normal = ExtResource("2_4aft5")
+text = "+10 def"
+
+[node name="Atkspeed" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_k3qmv")
+theme_override_styles/normal = ExtResource("2_4aft5")
+text = "+2 firerate"
+
+[node name="Mvmntspeed" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_k3qmv")
+theme_override_styles/normal = ExtResource("2_4aft5")
+text = "+3 mvmnt speed"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Stsdur" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_k3qmv")
+theme_override_styles/normal = ExtResource("2_4aft5")
+text = "+ 1 sec status duration"
+
+[node name="Stsdmg" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_k3qmv")
+theme_override_styles/normal = ExtResource("2_4aft5")
+text = "+ 3 status dmg"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Dmg" to="." method="_on_dmg_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Hp" to="." method="_on_hp_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Def" to="." method="_on_def_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Atkspeed" to="." method="_on_atkspeed_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Mvmntspeed" to="." method="_on_mvmntspeed_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Stsdur" to="." method="_on_stsdur_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Stsdmg" to="." method="_on_stsdmg_pressed"]

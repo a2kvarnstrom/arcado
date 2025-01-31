@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dc6bx5w13ev0i"]
+[gd_scene load_steps=36 format=3 uid="uid://dc6bx5w13ev0i"]
 
 [ext_resource type="PackedScene" uid="uid://dolejrjv5sh2d" path="res://scenes/player.tscn" id="1_okep1"]
 [ext_resource type="Script" path="res://scripts/systems/state_machine/state_machine.gd" id="2_6nn1i"]
@@ -9,7 +9,9 @@
 [ext_resource type="Script" path="res://scripts/systems/waves/wave.gd" id="6_fif7f"]
 [ext_resource type="Script" path="res://scripts/systems/waves/enemy_sequence.gd" id="7_7ujij"]
 [ext_resource type="Shader" path="res://shaders/post_processing.gdshader" id="7_ahyao"]
+[ext_resource type="PackedScene" uid="uid://sgh28otitqw3" path="res://upgrades_ui.tscn" id="9_yqqm1"]
 [ext_resource type="Theme" uid="uid://cdp1vqedgum7d" path="res://themes/menu.tres" id="8_pjfef"]
+
 
 [sub_resource type="Resource" id="Resource_yhalk"]
 script = ExtResource("7_7ujij")
@@ -187,6 +189,10 @@ position = Vector2(960, 0)
 shape = SubResource("RectangleShape2D_00gao")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UpgradesUI" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("9_yqqm1")]
+visible = false
+player = NodePath("../../Player")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_o160b")

@@ -1,9 +1,11 @@
+class_name Player 
 extends CharacterBody2D
 
 @onready var circle: Node2D = $circle
 @onready var label: Label = %deathhaha
 @onready var main: Node2D = $".."
 @onready var death_reset: Timer = $DeathReset
+@onready var upgrades_ui: Control = $"../CanvasLayer/UpgradesUI"
 @export var projectile = load("res://scenes/projectile.tscn")
 
 @export var SPEED: float = 300.0
@@ -18,7 +20,7 @@ func _process(delta: float) -> void:
 	if(spin_speed <= 3.0):
 		spin_speed += delta * 3
 	
-	if(Input.is_action_just_pressed("shoot")):
+	if(Input.is_action_just_pressed("shoot") && Engine.time_scale == 1):
 		shoot()
 	
 	if(shoot_cooldown > 0):
@@ -75,7 +77,8 @@ func circular_motion():
 	circle.position = Vector2(radius * x_pos, radius * y_pos)
 
 func pause() -> void:
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+	Engine.time_scale = !Engine.time_scale
+	upgrades_ui.visible = !upgrades_ui.visible 
 
 func _draw() -> void:
 	draw_circle(Vector2(0,0), 55.0, Color.WHITE, true, -1.0, true)
