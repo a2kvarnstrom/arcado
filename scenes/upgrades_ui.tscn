@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://sgh28otitqw3"]
+[gd_scene load_steps=5 format=3 uid="uid://sgh28otitqw3"]
 
 [ext_resource type="Script" path="res://scripts/systems/menus/upgrades_ui.gd" id="1_2cy7m"]
-[ext_resource type="StyleBox" path="res://scenes/new_style_box_flat.tres" id="2_4aft5"]
+[ext_resource type="StyleBox" uid="uid://we3n4sot0pw3" path="res://scenes/new_style_box_flat.tres" id="2_4aft5"]
 [ext_resource type="Theme" uid="uid://cdp1vqedgum7d" path="res://themes/menu.tres" id="2_k3qmv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86syi"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.0538508, 0.74766, 1)
 
 [node name="UpgradesUI" type="Control"]
 layout_mode = 3
@@ -64,6 +72,15 @@ theme = ExtResource("2_k3qmv")
 theme_override_styles/normal = ExtResource("2_4aft5")
 text = "+ 3 status dmg"
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Weapons" type="Button" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("2_k3qmv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_86syi")
+text = "weapons"
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Dmg" to="." method="_on_dmg_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Hp" to="." method="_on_hp_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Def" to="." method="_on_def_pressed"]
@@ -71,3 +88,4 @@ text = "+ 3 status dmg"
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Mvmntspeed" to="." method="_on_mvmntspeed_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Stsdur" to="." method="_on_stsdur_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Stsdmg" to="." method="_on_stsdmg_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/Weapons" to="." method="_on_weapons_pressed"]

@@ -34,3 +34,8 @@ func _on_stsdur_pressed() -> void:
 
 func _on_stsdmg_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _on_weapons_pressed() -> void:
+	add_child(load("res://scenes/weapon_ui.tscn").instantiate())
+	$VBoxContainer.visible = !$VBoxContainer.visible

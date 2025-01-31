@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvcplxmqpntys"]
+
+[ext_resource type="Script" path="res://scripts/systems/menus/weapon_ui.gd" id="1_hhiy3"]
+[ext_resource type="Theme" uid="uid://cdp1vqedgum7d" path="res://themes/menu.tres" id="1_o8k55"]
+[ext_resource type="StyleBox" uid="uid://we3n4sot0pw3" path="res://scenes/new_style_box_flat.tres" id="2_61ydt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5mwhc"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.937176, 0.303774, 0.284459, 1)
+
+[node name="WeaponUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hhiy3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="DobleProjectGun" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_o8k55")
+theme_override_styles/normal = ExtResource("2_61ydt")
+text = "doble projectile gun"
+
+[node name="HeaveBallGun" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_o8k55")
+theme_override_styles/normal = ExtResource("2_61ydt")
+text = "heavy ball gun "
+
+[node name="ExpandingCircelGun" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_o8k55")
+theme_override_styles/normal = ExtResource("2_61ydt")
+text = "expanding circle gun"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_o8k55")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5mwhc")
+text = "back"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/DobleProjectGun" to="." method="_on_doble_project_gun_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/HeaveBallGun" to="." method="_on_heave_ball_gun_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ExpandingCircelGun" to="." method="_on_expanding_circel_gun_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Button" to="." method="_on_button_pressed"]
