@@ -25,7 +25,7 @@ func _on_atkspeed_pressed() -> void:
 
 
 func _on_mvmntspeed_pressed() -> void:
-	pass # Replace with function body.
+	player.SPEED += 15
 
 
 func _on_stsdur_pressed() -> void:
