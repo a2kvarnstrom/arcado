@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dc6bx5w13ev0i"]
+[gd_scene load_steps=36 format=3 uid="uid://dc6bx5w13ev0i"]
 
 [ext_resource type="PackedScene" uid="uid://dolejrjv5sh2d" path="res://scenes/player.tscn" id="1_okep1"]
 [ext_resource type="Script" path="res://scripts/systems/state_machine/state_machine.gd" id="2_6nn1i"]
@@ -115,12 +115,6 @@ size = Vector2(20, 1080)
 size = Vector2(20, 1080)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o160b"]
-shader = ExtResource("7_ahyao")
-shader_parameter/r_displacement = Vector2(3, 0)
-shader_parameter/g_displacement = Vector2(0, 0)
-shader_parameter/b_displacement = Vector2(-3, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_linkp"]
 shader = ExtResource("7_ahyao")
 shader_parameter/r_displacement = Vector2(3, 0)
 shader_parameter/g_displacement = Vector2(0, 0)
@@ -254,10 +248,9 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
-[node name="UpgradesUI" parent="CanvasLayer" instance=ExtResource("9_yqqm1")]
+[node name="UpgradesUI" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("9_yqqm1")]
 visible = false
-material = SubResource("ShaderMaterial_linkp")
-script = null
+player = NodePath("../../Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rkgx4")

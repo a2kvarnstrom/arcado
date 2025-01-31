@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var SPEED: float = 300
+@export var color: Color = Color.CORNFLOWER_BLUE
 
 var lifespan: float = 10.0
 var player: CharacterBody2D
@@ -25,7 +26,7 @@ func _physics_process(delta: float) -> void:
 	position = position.move_toward(player.global_position, SPEED * delta)
 
 func _draw() -> void:
-	draw_circle(Vector2(0.0, 0.0), 15, Color.CORNFLOWER_BLUE, true, -1.0, true)
+	draw_circle(Vector2(0.0, 0.0), 15, color, true, -1.0, true)
 
 func _on_pierce_pierce_depleted() -> void:
 	queue_free()

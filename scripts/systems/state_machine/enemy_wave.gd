@@ -21,13 +21,17 @@ var time_left: float
 var enemy_list: Array = [
 	preload("res://scenes/square_enemy.tscn"),
 	preload("res://scenes/circle_enemy.tscn"),
-	preload("res://scenes/triangle_enemy.tscn")
+	preload("res://scenes/triangle_enemy.tscn"),
+	preload("res://scenes/pink_ring.tscn"),
+	preload("res://scenes/yellow_triangle.tscn")
 ]
 
 var enum_enemies: Dictionary = {
 	0: Global.ENEMIES["RED_SQUARE"],
 	1: Global.ENEMIES["BLUE_CIRCLE"],
-	2: Global.ENEMIES["GREEN_TRIANGLE"]
+	2: Global.ENEMIES["GREEN_TRIANGLE"],
+	3: Global.ENEMIES["PINK_RING"],
+	4: Global.ENEMIES["YELLOW_TRIANGLE"]
 }
 
 func enter() -> void:
@@ -42,7 +46,7 @@ func update(delta: float) -> void:
 	wave_counter.text = "Wave: " + str(current_wave + 1)
 	wave_timer -= delta
 	progress.value = wave_timer
-	progress_text.text = str("%.2f" % (progress.value)) + "/" + str("%d" % (progress.max_value)) + " seconds left"
+	progress_text.text = str("%.2f" % (progress.value)) + "/" + str("%.2f" % (progress.max_value)) + " seconds left"
 
 func physics_update(_delta: float) -> void:
 	spawn_enemy()
@@ -84,7 +88,7 @@ func spawn_enemy():
 					var temp_sequence: EnemySequence = EnemySequence.new()
 					temp_sequence.amount = randi_range(1, 5)
 					temp_sequence.time = temp_sequence.amount * randf_range(0.5, 3)
-					temp_sequence.enemy = enum_enemies[randi_range(0, 2)]
+					temp_sequence.enemy = enum_enemies[randi_range(0, enemy_list.size()-1)]
 					xtra_wave_enemy_sequences.push_back(temp_sequence)
 				xtra_wave.enemy_sequences = (xtra_wave_enemy_sequences)
 				waves.push_back(xtra_wave)

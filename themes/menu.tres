@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=4 format=3 uid="uid://cdp1vqedgum7d"]
 
-[ext_resource type="FontFile" uid="uid://cmakj8ar0tc71" path="res://fonts/RETROTECH.ttf" id="1_0nj6q"]
+[ext_resource type="FontFile" uid="uid://mc641ri1p5w5" path="res://fonts/RETROTECH.ttf" id="1_0nj6q"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7du05"]
 

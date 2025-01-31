@@ -5,6 +5,7 @@ extends State
 @export var SPEED: float = 100.0
 @export var stop_dist: float = 400.0
 @export var spin: bool = false
+@export var rotation_offset: float = 0.0
 var player: CharacterBody2D
 
 func enter() -> void:
@@ -19,7 +20,7 @@ func physics_update(delta: float) -> void:
 		transitioned.emit(self, "Shooting")
 	
 	if(!spin):
-		var angle_to_player: float = enemy.global_position.direction_to(player.global_position).angle()
+		var angle_to_player: float = enemy.global_position.direction_to(player.global_position).angle() + deg_to_rad(rotation_offset)
 		enemy.rotation = move_toward(enemy.rotation, angle_to_player, 1)
 	else:
 		enemy.rotation += deg_to_rad(90 * delta)

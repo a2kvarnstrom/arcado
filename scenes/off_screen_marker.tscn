@@ -1,8 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddv38s6qpw8g5"]
+[gd_scene load_steps=3 format=3 uid="uid://ns86d0hmx05g"]
 
-
-[ext_resource type="Script" path="res://off_screen_marker.gd" id="1_thiuo"]
-[ext_resource type="Script" path="res://scenes/marker_sprite.gd" id="2_50r6j"]
+[ext_resource type="Script" path="res://scripts/systems/entity/off_screen_marker.gd" id="1_thiuo"]
+[ext_resource type="Script" path="res://scripts/systems/entity/marker_sprite.gd" id="2_50r6j"]
 
 [node name="OffScreenMarker" type="Node2D"]
 script = ExtResource("1_thiuo")
