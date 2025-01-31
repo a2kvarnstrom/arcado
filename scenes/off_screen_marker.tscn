@@ -1,5 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ddv38s6qpw8g5"]
 
+
 [ext_resource type="Script" path="res://off_screen_marker.gd" id="1_thiuo"]
 [ext_resource type="Script" path="res://scenes/marker_sprite.gd" id="2_50r6j"]
 
