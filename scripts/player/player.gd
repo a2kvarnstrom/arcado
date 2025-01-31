@@ -1,6 +1,7 @@
 class_name Player 
 extends CharacterBody2D
 
+@onready var health: Health = $Health
 @onready var circle: Node2D = $circle
 @onready var label: Label = %deathhaha
 @onready var main: Node2D = $".."
