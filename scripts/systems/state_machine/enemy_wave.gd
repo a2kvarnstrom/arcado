@@ -46,7 +46,7 @@ func update(delta: float) -> void:
 	wave_counter.text = "Wave: " + str(current_wave + 1)
 	wave_timer -= delta
 	progress.value = wave_timer
-	progress_text.text = str("%.2f" % (progress.value)) + "/" + str("%.2f" % (progress.max_value)) + " seconds left"
+	progress_text.text = str("%.2f" % (progress.value)) + "/" + str(int(progress.max_value)) + " seconds left"
 
 func physics_update(_delta: float) -> void:
 	spawn_enemy()
@@ -70,13 +70,17 @@ func spawn_enemy():
 		# other variable logic
 		amount_left -= 1
 		time_left = current_sequence.time / current_sequence.amount 
+		print("tleft ", time_left)
+		print("progval ", progress.value)
 	else:
 		time_left -= get_process_delta_time()
 	
 	if(amount_left == 0):
 		waves[current_wave].current_sequence += 1
 		amount_left = current_sequence.amount
+		print("seq", waves[current_wave].current_sequence)
 		if(waves[current_wave].current_sequence >= waves[current_wave].enemy_sequences.size()):
+			print_debug("wave", current_wave + 1)
 			waves[current_wave].current_sequence = 0
 			current_wave += 1
 			seq_id = 0

@@ -3,11 +3,13 @@ extends CharacterBody2D
 @export var SPEED: float = 100.0
 @export var stop_dist: float = 400.0
 @onready var laser: Node2D = $Laser
+@onready var off_screen_marker: Node2D = $OffScreenMarker
 
 var cooldown: float = 2.0
 var player: CharacterBody2D
 
 func _ready() -> void:
+	off_screen_marker.color = Color.GREEN
 	player = get_tree().get_first_node_in_group("Player")
 	print("triangle")
 

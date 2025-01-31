@@ -1,4 +1,8 @@
-[gd_scene format=3 uid="uid://b68f8g7qwyut7"]
+[gd_scene load_steps=4 format=3 uid="uid://b68f8g7qwyut7"]
+
+[ext_resource type="Script" path="res://scripts/systems/menus/options.gd" id="1_f2nhr"]
+[ext_resource type="Theme" uid="uid://cdp1vqedgum7d" path="res://themes/menu.tres" id="2_m6lnw"]
+[ext_resource type="StyleBox" uid="uid://cv88a6udmx6gh" path="res://scenes/new_style_box_flat.tres" id="3_202s5"]
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -7,3 +11,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_f2nhr")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 200.0
+theme = ExtResource("2_m6lnw")
+theme_override_font_sizes/font_size = 150
+text = "i forgor 💀"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+alignment = 2
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_m6lnw")
+theme_override_font_sizes/font_size = 150
+theme_override_styles/normal = ExtResource("3_202s5")
+text = "BACK"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

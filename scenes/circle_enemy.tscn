@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://suderjlct2q"]
+[gd_scene load_steps=8 format=3 uid="uid://suderjlct2q"]
 
 [ext_resource type="Script" path="res://scripts/enemies/circle_enemy.gd" id="1_t16ow"]
+[ext_resource type="PackedScene" uid="uid://ns86d0hmx05g" path="res://scenes/off_screen_marker.tscn" id="2_7fjq8"]
 [ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="4_qb62g"]
 [ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="5_bsgsf"]
 [ext_resource type="Script" path="res://scripts/systems/entity/hitbox.gd" id="6_3f0pn"]
@@ -13,6 +14,8 @@ radius = 35.0
 
 [node name="CircleEnemy" type="CharacterBody2D"]
 script = ExtResource("1_t16ow")
+
+[node name="OffScreenMarker" parent="." instance=ExtResource("2_7fjq8")]
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_qb62g")

@@ -24,4 +24,5 @@ func _on_expanding_circel_gun_pressed() -> void:
 
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/upgrades_ui.tscn")
+	get_node("../VBoxContainer").visible = true
+	queue_free()

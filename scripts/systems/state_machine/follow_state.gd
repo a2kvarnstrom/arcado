@@ -21,6 +21,6 @@ func physics_update(delta: float) -> void:
 	
 	if(!spin):
 		var angle_to_player: float = enemy.global_position.direction_to(player.global_position).angle() + deg_to_rad(rotation_offset)
-		enemy.rotation = move_toward(enemy.rotation, angle_to_player, 1)
+		enemy.rotation = angle_to_player
 	else:
 		enemy.rotation += deg_to_rad(90 * delta)

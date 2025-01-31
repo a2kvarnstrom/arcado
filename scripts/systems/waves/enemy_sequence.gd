@@ -6,4 +6,5 @@ extends Resource
 @export var time: float
 
 func get_total_time() -> float:
+	print("time/enemy ", time / amount)
 	return time

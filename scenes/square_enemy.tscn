@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjc5d8yo4bah2"]
+[gd_scene load_steps=11 format=3 uid="uid://bjc5d8yo4bah2"]
 
 [ext_resource type="Script" path="res://scripts/systems/state_machine/state_machine.gd" id="1_ffjy1"]
 [ext_resource type="Script" path="res://scripts/enemies/square_enemy.gd" id="1_jnia6"]
 [ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="2_1rrbv"]
+[ext_resource type="PackedScene" uid="uid://ns86d0hmx05g" path="res://scenes/off_screen_marker.tscn" id="2_yrd04"]
 [ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="3_xhvbw"]
 [ext_resource type="Script" path="res://scripts/systems/state_machine/follow_state.gd" id="4_qn4ji"]
 [ext_resource type="Script" path="res://scripts/systems/state_machine/shooting_state.gd" id="5_7yty5"]
@@ -16,6 +17,8 @@ size = Vector2(55, 55)
 
 [node name="SquareEnemy" type="CharacterBody2D"]
 script = ExtResource("1_jnia6")
+
+[node name="OffScreenMarker" parent="." instance=ExtResource("2_yrd04")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_iyj5g")

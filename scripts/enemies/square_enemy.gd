@@ -1,6 +1,8 @@
 extends CharacterBody2D
+@onready var off_screen_marker: Node2D = $OffScreenMarker
 
 func _ready() -> void:
+	off_screen_marker.color = Color.RED
 	print("square")
 
 func _physics_process(_delta: float) -> void:

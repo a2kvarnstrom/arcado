@@ -13,7 +13,7 @@ func _on_dmg_pressed() -> void:
 
 
 func _on_hp_pressed() -> void:
-	player.health.health += 5
+	player.health.set_max_health(player.health.get_max_health() + 5)
 
 
 func _on_def_pressed() -> void:
@@ -38,4 +38,4 @@ func _on_stsdmg_pressed() -> void:
 
 func _on_weapons_pressed() -> void:
 	add_child(load("res://scenes/weapon_ui.tscn").instantiate())
-	$VBoxContainer.visible = !$VBoxContainer.visible
+	$VBoxContainer.visible = false

@@ -3,11 +3,13 @@ extends CharacterBody2D
 @onready var main: Node = get_tree().get_root().get_node("main")
 @onready var projectile = load("res://scenes/circle_projectile.tscn")
 @onready var progress_bar: ProgressBar = $ProgressBar
+@onready var off_screen_marker: Node2D = $OffScreenMarker
 
 var shoot_cooldown: float = 1.0
 var player: CharacterBody2D 
 
 func _ready() -> void:
+	off_screen_marker.color = Color.HOT_PINK
 	player = get_tree().get_first_node_in_group("Player")
 	print("ring")
 
