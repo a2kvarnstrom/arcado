@@ -35,7 +35,7 @@ var enum_enemies: Dictionary = {
 
 func enter() -> void:
 	amount_left = waves[current_wave].enemy_sequences[seq_id].amount
-	time_left = waves[current_wave].enemy_sequences[seq_id].time
+	time_left = waves[current_wave].enemy_sequences[seq_id].time / amount_left
 	time = waves[current_wave].get_total_wave_time()
 	wave_timer = time
 	progress.max_value = wave_timer
