@@ -24,13 +24,15 @@ var time_left: float
 var enemy_list: Array = [
 	preload("res://scenes/square_enemy.tscn"),
 	preload("res://scenes/circle_enemy.tscn"),
-	preload("res://scenes/triangle_enemy.tscn")
+	preload("res://scenes/triangle_enemy.tscn"),
+	preload("res://scenes/pink_enemy.tscn")
 ]
 
 var enum_enemies: Dictionary = {
 	0: Global.ENEMIES["RED_SQUARE"],
 	1: Global.ENEMIES["BLUE_CIRCLE"],
-	2: Global.ENEMIES["GREEN_TRIANGLE"]
+	2: Global.ENEMIES["GREEN_TRIANGLE"],
+	3: Global.ENEMIES["PINK_RING"]
 }
 
 func enter() -> void:
@@ -90,7 +92,7 @@ func spawn_enemy():
 					var temp_sequence: EnemySequence = EnemySequence.new()
 					temp_sequence.amount = randi_range(1, 5)
 					temp_sequence.time = temp_sequence.amount * randf_range(0.5, 3)
-					temp_sequence.enemy = enum_enemies[randi_range(0, 2)]
+					temp_sequence.enemy = enum_enemies[randi_range(0, 3)]
 					xtra_wave_enemy_sequences.push_back(temp_sequence)
 				xtra_wave.enemy_sequences = (xtra_wave_enemy_sequences)
 				waves.push_back(xtra_wave)

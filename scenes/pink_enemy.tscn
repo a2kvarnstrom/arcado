@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4ls4wsfxv8rq"]
+
+[ext_resource type="Script" path="res://scripts/enemies/pink_enemy.gd" id="1_41okg"]
+[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="2_wxev6"]
+[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="3_bor3s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ig7m3"]
+radius = 30.0
+
+[node name="PinkEnemy" type="CharacterBody2D"]
+script = ExtResource("1_41okg")
+
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("healthbar")]
+script = ExtResource("2_wxev6")
+max_health = 20.0
+healthbar = NodePath("../ProgressBar")
+
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("3_bor3s")
+health = NodePath("../Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_ig7m3")
+metadata/_edit_group_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -18.0
+offset_top = 33.0
+offset_right = 18.0
+offset_bottom = 40.0
+max_value = 20.0
+show_percentage = false
+
+[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
