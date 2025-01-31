@@ -69,7 +69,7 @@ func shoot() -> void:
 	instance.get_node("Hitbox").set_collision_layer_value(2, false)
 	instance.get_node("Hitbox").set_collision_mask_value(3, true)
 	instance.get_node("Hitbox").set_collision_mask_value(1, false)
-	instance.damage = dmg
+	instance.dmg = dmg
 	main.add_child.call_deferred(instance)
 
 func circular_motion():
