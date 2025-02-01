@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/systems/menus/weapon_ui.gd" id="1_hhiy3"]
 [ext_resource type="Theme" uid="uid://cdp1vqedgum7d" path="res://themes/menu.tres" id="1_o8k55"]
-[ext_resource type="StyleBox" uid="uid://cv88a6udmx6gh" path="res://scenes/new_style_box_flat.tres" id="2_61ydt"]
+[ext_resource type="StyleBox" uid="uid://cv88a6udmx6gh" path="res://themes/new_style_box_flat.tres" id="2_61ydt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5mwhc"]
 bg_color = Color(0, 0, 0, 1)

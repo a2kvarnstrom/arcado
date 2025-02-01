@@ -11,7 +11,7 @@ func _ready() -> void:
 	sprite.color = color
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var canvas = get_canvas_transform()
 	var top_left = -canvas.origin / canvas.get_scale()
 	var size = get_viewport_rect().size / canvas.get_scale()
@@ -28,10 +28,10 @@ func set_marker_position(bounds: Rect2) -> void:
 		var length
 		
 		var tl = (bounds.position - target_position).angle()
-		var tr = (Vector2(bounds.end.x, bounds.position.y) - target_position).angle()
+		var t_r = (Vector2(bounds.end.x, bounds.position.y) - target_position).angle()
 		var bl = (Vector2(bounds.position.x, bounds.end.y) - target_position).angle()
 		var br = (bounds.end - target_position).angle()
-		if((displacement.anglet() > tl && displacement.angle() < tr)) || (displacement.angle() < bl  && displacement.angle() > br):
+		if((displacement.anglet() > tl && displacement.angle() < t_r)) || (displacement.angle() < bl  && displacement.angle() > br):
 			var y_length = clampf(displacement.y, bounds.position.y - target_position.y, bounds.end.y - target_position.y)
 			var angle = displacement.angle() - PI / 2.0
 			length = y_length / cos(angle) if cos(angle) != 0 else y_length

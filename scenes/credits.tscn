@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://cdp1vqedgum7d" path="res://themes/menu.tres" id="1_82hpl"]
 [ext_resource type="Script" path="res://scripts/systems/menus/credits.gd" id="1_lqt57"]
-[ext_resource type="StyleBox" uid="uid://cv88a6udmx6gh" path="res://scenes/new_style_box_flat.tres" id="2_ko08v"]
+[ext_resource type="StyleBox" uid="uid://cv88a6udmx6gh" path="res://themes/new_style_box_flat.tres" id="2_ko08v"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3

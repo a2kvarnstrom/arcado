@@ -7,9 +7,11 @@ extends CharacterBody2D
 @onready var main: Node2D = $".."
 @onready var death_reset: Timer = $DeathReset
 @onready var upgrades_ui: Control = $"../CanvasLayer/UpgradesUI"
-@export var projectile = load("res://scenes/projectile.tscn")
 
 @export var SPEED: float = 300.0
+@export var weapon: Globals.WEAPONS
+
+var projectile = load("res://scenes/projectile.tscn")
 var shoot_cooldown: float = 0.0
 var radius: float = 80.0
 var angle: float = 0.0
@@ -59,11 +61,11 @@ func shoot() -> void:
 	shoot_cooldown = 1/atk_speed
 	spin_speed = 0.3
 	
-	
 	var direction: float = (circle.global_position - global_position).angle() + deg_to_rad(90)
+	
 	var instance: CharacterBody2D = projectile.instantiate()
 	
-	instance.dir = direction - deg_to_rad(7.5) 
+	instance.dir = direction 
 	instance.spawn_pos = circle.global_position
 	instance.spawn_rot = instance.dir + deg_to_rad(90)
 	instance.zdex = z_index - 1
@@ -73,17 +75,6 @@ func shoot() -> void:
 	instance.get_node("Hitbox").set_collision_mask_value(1, false)
 	instance.dmg = dmg
 	main.add_child.call_deferred(instance)
-	var instance2: CharacterBody2D = projectile.instantiate() 
-	instance2.dir = direction + deg_to_rad(7.5)
-	instance2.spawn_pos = circle.global_position
-	instance2.spawn_rot = instance2.dir + deg_to_rad(90)
-	instance2.zdex = z_index - 1
-	instance2.get_node("Hitbox").set_collision_layer_value(4, true)
-	instance2.get_node("Hitbox").set_collision_layer_value(2, false)
-	instance2.get_node("Hitbox").set_collision_mask_value(3, true)
-	instance2.get_node("Hitbox").set_collision_mask_value(1, false)
-	instance2.dmg = dmg
-	main.add_child.call_deferred(instance2)
 
 func circular_motion():
 	angle += spin_speed * get_process_delta_time()
