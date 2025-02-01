@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://cr20e34pya8gi"]
+
+[ext_resource type="Script" path="res://status_effect_ui.gd" id="1_upai8"]
+[ext_resource type="Theme" uid="uid://cdp1vqedgum7d" path="res://themes/menu.tres" id="2_kt57a"]
+[ext_resource type="StyleBox" uid="uid://cv88a6udmx6gh" path="res://scenes/new_style_box_flat.tres" id="3_jybp1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idoe5"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0.492353, 0.204233, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0j7uy"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.156824, 0.308929, 0.937014, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45h21"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.771125, 0.383461, 1.92523e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g0moq"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.827319, 0.83864, 0, 1)
+
+[node name="StatusEffectUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_upai8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Toxin" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_kt57a")
+theme_override_styles/normal = SubResource("StyleBoxFlat_idoe5")
+text = "toxin"
+
+[node name="Cold" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_kt57a")
+theme_override_styles/normal = ExtResource("3_jybp1")
+text = "cold"
+
+[node name="Zap" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_kt57a")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0j7uy")
+text = "zap"
+
+[node name="Explodi" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_kt57a")
+theme_override_styles/normal = SubResource("StyleBoxFlat_45h21")
+text = "Explodi"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_kt57a")
+theme_override_styles/normal = SubResource("StyleBoxFlat_g0moq")
+text = "back"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Toxin" to="." method="_on_toxin_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Cold" to="." method="_on_cold_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Zap" to="." method="_on_zap_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Explodi" to="." method="_on_explodi_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Button" to="." method="_on_button_pressed"]

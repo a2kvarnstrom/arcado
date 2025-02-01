@@ -39,3 +39,8 @@ func _on_stsdmg_pressed() -> void:
 func _on_weapons_pressed() -> void:
 	add_child(load("res://scenes/weapon_ui.tscn").instantiate())
 	$VBoxContainer.visible = false
+
+
+func _on_status_effects_pressed() -> void:
+	add_child(load("res://scenes/status_effect_ui.tscn").instantiate())
+	$VBoxContainer.visible = false

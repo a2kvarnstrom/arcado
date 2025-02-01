@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://sgh28otitqw3"]
+[gd_scene load_steps=6 format=3 uid="uid://sgh28otitqw3"]
 
 [ext_resource type="Script" path="res://scripts/systems/menus/upgrades_ui.gd" id="1_2cy7m"]
 [ext_resource type="StyleBox" uid="uid://cv88a6udmx6gh" path="res://scenes/new_style_box_flat.tres" id="2_4aft5"]
@@ -11,6 +11,14 @@ border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
 border_color = Color(1, 0.0538508, 0.74766, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_touuc"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1.27546e-06, 0.608819, 0.261716, 1)
 
 [node name="UpgradesUI" type="Control"]
 layout_mode = 3
@@ -81,6 +89,15 @@ theme = ExtResource("2_k3qmv")
 theme_override_styles/normal = SubResource("StyleBoxFlat_86syi")
 text = "weapons"
 
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="StatusEffects" type="Button" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme = ExtResource("2_k3qmv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_touuc")
+text = "status effects"
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Dmg" to="." method="_on_dmg_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Hp" to="." method="_on_hp_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Def" to="." method="_on_def_pressed"]
@@ -89,3 +106,4 @@ text = "weapons"
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Stsdur" to="." method="_on_stsdur_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Stsdmg" to="." method="_on_stsdmg_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer3/Weapons" to="." method="_on_weapons_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer4/StatusEffects" to="." method="_on_status_effects_pressed"]

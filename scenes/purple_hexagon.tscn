@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bxcadl4bsfmln"]
 
 [ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="1_b3kl4"]
-[ext_resource type="Script" path="res://scenes/purple_hexagon.gd" id="1_efdyj"]
+[ext_resource type="Script" path="res://scripts/enemies/purple_hexagon.gd" id="1_efdyj"]
 [ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="2_6m8v8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pyk8n"]
