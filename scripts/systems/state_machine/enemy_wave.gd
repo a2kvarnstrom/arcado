@@ -67,6 +67,8 @@ func spawn_enemy(delta: float):
 		# instance enemy
 		var instance: Node = enemy_list[current_sequence.enemy].instantiate()
 		instance.position = enemy_position
+		if(current_sequence.enemy != Global.ENEMIES["PURPLE_HEXAGON"]):
+			instance.add_to_group("Enemies")
 		add_child(instance)
 		
 		# other variable logic

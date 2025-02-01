@@ -101,17 +101,13 @@ script = ExtResource("6_fif7f")
 enemy_sequences = Array[ExtResource("7_7ujij")]([SubResource("Resource_2ehab")])
 current_sequence = 0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m20qs"]
-size = Vector2(1920, 20)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gj0ba"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxr43"]
-size = Vector2(1920, 20)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_20lyg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qyla8"]
-size = Vector2(20, 1080)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lcx4f"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_00gao"]
-size = Vector2(20, 1080)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u5om0"]
 
 [sub_resource type="Gradient" id="Gradient_6bo3b"]
 
@@ -160,25 +156,27 @@ wave_counter = NodePath("../../CanvasLayer/WaveCounter")
 unique_name_in_owner = true
 script = ExtResource("6_73cjn")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 15
-collision_mask = 15
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 540)
-shape = SubResource("RectangleShape2D_m20qs")
+shape = SubResource("WorldBoundaryShape2D_gj0ba")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -494)
-shape = SubResource("RectangleShape2D_rxr43")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -540)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_20lyg")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-960, 0)
-shape = SubResource("RectangleShape2D_qyla8")
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_lcx4f")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(960, 0)
-shape = SubResource("RectangleShape2D_00gao")
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_u5om0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -28,6 +28,7 @@ func shoot() -> void:
 	instance.spawn_rot = rotation
 	instance.zdex = z_index - 1
 	instance.color = Color.HOT_PINK
+	instance.lifespan = 10.0
 	main.add_child.call_deferred(instance)
 
 func _draw() -> void:

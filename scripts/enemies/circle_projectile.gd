@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 @export var SPEED: float = 300
 @export var color: Color = Color.CORNFLOWER_BLUE
+@export var lifespan: float = 10.0
 
-var lifespan: float = 10.0
 var player: CharacterBody2D
 var dir: float
 var spawn_pos: Vector2

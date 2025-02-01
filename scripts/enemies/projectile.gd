@@ -2,10 +2,10 @@ extends CharacterBody2D
 
 @export var SPEED: float = 500
 @export var dmg: float = 10
+@export var lifespan: float = 3
 
 @onready var hitbox: Hitbox = $Hitbox
 
-var lifespan: float = 3.0
 var dir: float
 var spawn_pos: Vector2
 var spawn_rot: float

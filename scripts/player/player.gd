@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var main: Node2D = $".."
 @onready var death_reset: Timer = $DeathReset
 @onready var upgrades_ui: Control = $"../CanvasLayer/UpgradesUI"
+@onready var hurtbox: Hurtbox = $Hurtbox
 
 @export var SPEED: float = 300.0
 @export var weapon: Globals.WEAPONS
@@ -18,8 +19,14 @@ var angle: float = 0.0
 var spin_speed: float = 0.0
 var dmg: float = 10
 var atk_speed: float = 2
+var d_res: float = 0.0
+var iframes: float = 0.0
 
 func _process(delta: float) -> void:
+	if(iframes > 0):
+		iframes -= delta
+	else:
+		hurtbox.damage_reduction = d_res
 	circular_motion()
 	
 	if(spin_speed <= 3.0):
@@ -74,6 +81,7 @@ func shoot() -> void:
 	instance.get_node("Hitbox").set_collision_mask_value(3, true)
 	instance.get_node("Hitbox").set_collision_mask_value(1, false)
 	instance.dmg = dmg
+	instance.lifespan = 2.5
 	main.add_child.call_deferred(instance)
 
 func circular_motion():
@@ -99,3 +107,7 @@ func _on_health_health_depleted() -> void:
 func _on_death_reset_timeout() -> void:
 	Engine.time_scale = 1
 	get_tree().reload_current_scene()
+
+func _on_health_health_changed(_diff: float) -> void:
+	hurtbox.damage_reduction = 100.0
+	iframes = 1
