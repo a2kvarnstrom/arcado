@@ -1,16 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://6aey5w2fps3r"]
+[gd_scene load_steps=6 format=3 uid="uid://6aey5w2fps3r"]
 
 [ext_resource type="Script" path="res://scripts/enemies/yellow_triangle.gd" id="1_fhx5e"]
 [ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="1_ocecq"]
 [ext_resource type="PackedScene" uid="uid://ns86d0hmx05g" path="res://scenes/off_screen_marker.tscn" id="2_0xvks"]
 [ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="2_pfda7"]
-[ext_resource type="Script" path="res://scripts/systems/state_machine/state_machine.gd" id="4_fflhh"]
-[ext_resource type="Script" path="res://scripts/systems/state_machine/follow_state.gd" id="5_3xerp"]
-[ext_resource type="Script" path="res://scripts/systems/state_machine/shoot_laser.gd" id="6_f2cof"]
 [ext_resource type="PackedScene" uid="uid://5q38gco3sk5l" path="res://scenes/laser.tscn" id="7_tqt4v"]
 
-[node name="YellowTriangle" type="CharacterBody2D"]
+[node name="YellowTriangle" type="CharacterBody2D" node_paths=PackedStringArray("lasers")]
 script = ExtResource("1_fhx5e")
+lasers = [NodePath("Laser"), NodePath("Laser2")]
 
 [node name="OffScreenMarker" parent="." instance=ExtResource("2_0xvks")]
 
@@ -46,21 +44,4 @@ show_percentage = false
 
 [node name="Laser2" parent="." instance=ExtResource("7_tqt4v")]
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("4_fflhh")
-initial_state = NodePath("Following")
-
-[node name="Following" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("5_3xerp")
-enemy = NodePath("../..")
-rotation_offset = 90.0
-
-[node name="Shooting" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "lasers")]
-script = ExtResource("6_f2cof")
-enemy = NodePath("../..")
-projectile = ExtResource("7_tqt4v")
-lasers = [NodePath("../../Laser"), NodePath("../../Laser2")]
-
-[connection signal="cooldown_complete" from="." to="StateMachine/Shooting" method="_on_yellow_triangle_cooldown_complete"]
 [connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
-[connection signal="attack_stopped" from="StateMachine/Shooting" to="." method="_on_shooting_attack_stopped"]

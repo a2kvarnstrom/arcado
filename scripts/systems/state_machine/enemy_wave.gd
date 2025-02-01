@@ -23,7 +23,8 @@ var enemy_list: Array = [
 	preload("res://scenes/circle_enemy.tscn"),
 	preload("res://scenes/triangle_enemy.tscn"),
 	preload("res://scenes/pink_ring.tscn"),
-	preload("res://scenes/yellow_triangle.tscn")
+	preload("res://scenes/yellow_triangle.tscn"),
+	preload("res://scenes/purple_hexagon.tscn")
 ]
 
 var enum_enemies: Dictionary = {
@@ -31,7 +32,8 @@ var enum_enemies: Dictionary = {
 	1: Global.ENEMIES["BLUE_CIRCLE"],
 	2: Global.ENEMIES["GREEN_TRIANGLE"],
 	3: Global.ENEMIES["PINK_RING"],
-	4: Global.ENEMIES["YELLOW_TRIANGLE"]
+	4: Global.ENEMIES["YELLOW_TRIANGLE"],
+	5: Global.ENEMIES["PURPLE_HEXAGON"]
 }
 
 func enter() -> void:
@@ -48,10 +50,10 @@ func update(delta: float) -> void:
 	progress.value = wave_timer
 	progress_text.text = str("%.2f" % (progress.value)) + "/" + str(int(progress.max_value)) + " seconds left"
 
-func physics_update(_delta: float) -> void:
-	spawn_enemy()
+func physics_update(delta: float) -> void:
+	spawn_enemy(delta)
 
-func spawn_enemy():
+func spawn_enemy(delta: float):
 	# some variables
 	seq_id = waves[current_wave].current_sequence
 	current_sequence = waves[current_wave].enemy_sequences[seq_id]
@@ -70,10 +72,10 @@ func spawn_enemy():
 		# other variable logic
 		amount_left -= 1
 		time_left = current_sequence.time / current_sequence.amount 
-		print("tleft ", time_left)
+		print("tleft ", "%.2f" % (time_left))
 		print("progval ", progress.value)
 	else:
-		time_left -= get_process_delta_time()
+		time_left -= delta
 	
 	if(amount_left == 0):
 		waves[current_wave].current_sequence += 1

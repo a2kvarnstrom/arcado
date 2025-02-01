@@ -10,4 +10,6 @@ func get_total_wave_time() -> float:
 		var sequence_time: float
 		sequence_time = enemy_sequence.get_total_time()
 		total_wave_time += sequence_time
+		print(sequence_time)
+	print(total_wave_time)
 	return total_wave_time 

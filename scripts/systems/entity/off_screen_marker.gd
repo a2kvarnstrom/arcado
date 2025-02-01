@@ -21,8 +21,8 @@ func _process(delta: float) -> void:
 
 func set_marker_position(bounds: Rect2) -> void:
 	if(target_position == null):
-		sprite.global_position.x = clampi(global_position.x, bounds.position.x, bounds.end.x)
-		sprite.global_position.y = clampi(global_position.y, bounds.position.y, bounds.end.y)
+		sprite.global_position.x = clampf(global_position.x, bounds.position.x, bounds.end.x)
+		sprite.global_position.y = clampf(global_position.y, bounds.position.y, bounds.end.y)
 	else:
 		var displacement = global_position - target_position
 		var length
