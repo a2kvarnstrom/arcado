@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxcadl4bsfmln"]
+[gd_scene load_steps=6 format=3 uid="uid://bxcadl4bsfmln"]
 
 [ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="1_b3kl4"]
 [ext_resource type="Script" path="res://scripts/enemies/purple_hexagon.gd" id="1_efdyj"]
 [ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="2_6m8v8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pyk8n"]
-radius = 15.0
-height = 45.0
+radius = 30.0
+height = 90.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k7ta2"]
+radius = 300.0
 
 [node name="PurpleHexagon" type="CharacterBody2D"]
 script = ExtResource("1_efdyj")
@@ -17,6 +20,8 @@ max_health = 25.0
 healthbar = NodePath("../ProgressBar")
 
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 4
+collision_mask = 8
 script = ExtResource("2_6m8v8")
 health = NodePath("../Health")
 
@@ -32,3 +37,11 @@ max_value = 25.0
 step = 1.0
 value = 25.0
 show_percentage = false
+
+[node name="EffectRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EffectRange"]
+shape = SubResource("CircleShape2D_k7ta2")
+
+[connection signal="body_shape_entered" from="EffectRange" to="." method="_on_effect_range_body_shape_entered"]
+[connection signal="body_shape_exited" from="EffectRange" to="." method="_on_effect_range_body_shape_exited"]
