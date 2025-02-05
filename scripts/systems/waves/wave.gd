@@ -6,10 +6,9 @@ extends Resource
 
 func get_total_wave_time() -> float:
 	var total_wave_time: float = 0.0
-	for enemy_sequence in enemy_sequences:
-		var sequence_time: float
-		sequence_time = enemy_sequence.get_total_time()
-		total_wave_time += sequence_time
-		print(sequence_time)
-	print(total_wave_time)
-	return total_wave_time 
+	for i in enemy_sequences:
+		total_wave_time += i.get_time()
+	return total_wave_time
+
+func get_current_sequence() -> EnemySequence:
+	return enemy_sequences[current_sequence]

@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 		var enemy_to_follow: CharacterBody2D
 		for enemy in enemies:
 			var dist = global_position.distance_squared_to(enemy.global_position)
-			if(dist < closest_dist && enemy != self):
+			if(dist < closest_dist && enemy != self && !enemy.has_node("EffectRange")):
 				closest_dist = dist
 				enemy_to_follow = enemy
 		if(enemy_to_follow):
@@ -36,19 +36,17 @@ func _physics_process(delta: float) -> void:
 
 func _on_effect_range_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	print_debug("body enter :D")
-	if(!enemy_affected):
+	if(!enemy_affected && !body.has_node("EffectRange")):
 		if(!body.has_method("pause") && body.has_node("Health")):
 			enemy_affected = body
 			enemy_affected.get_node("./Hurtbox").damage_reduction = 100
 			print(enemy_affected.get_node("./Hurtbox").damage_reduction)
 
-
 func _on_effect_range_body_shape_exited(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	print_debug("body exit D:")
-	if(body == enemy_affected):
+	if(body == enemy_affected && enemy_affected):
 		enemy_affected.get_node("./Hurtbox").damage_reduction = 0.0
 		enemy_affected = null
-
 
 func _on_health_health_depleted() -> void:
 	queue_free()

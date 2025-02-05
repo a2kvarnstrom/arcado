@@ -5,7 +5,7 @@ extends CharacterBody2D
 @onready var laser: Node2D = $Laser
 @onready var off_screen_marker: Node2D = $OffScreenMarker
 
-var cooldown: float = 2.0
+var cooldown: float = 1.0
 var player: CharacterBody2D
 
 func _ready() -> void:
@@ -21,12 +21,15 @@ func _draw() -> void:
 	draw_dashed_line(Vector2(0.0, 0.0), Vector2(0.0, -5000.0), Color.GREEN, 2.5, 15.0, true, true)
 
 func _process(delta: float) -> void:
-	if(Input.is_action_pressed("up") || Input.is_action_pressed("down") || Input.is_action_pressed("left") || Input.is_action_pressed("right")):
+	if((Input.is_action_pressed("up") || Input.is_action_pressed("down") || Input.is_action_pressed("left") || Input.is_action_pressed("right")) && cooldown <= 0):
 		# shoot only if player move
 		laser.enable()
 	else:
 		laser.disable()
-
+	
+	if(cooldown > 0):
+		cooldown -= delta
+	
 	# spin
 	rotation += deg_to_rad(90 * delta)
 

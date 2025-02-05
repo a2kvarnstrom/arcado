@@ -15,6 +15,10 @@ script = ExtResource("1_b3kl4")
 max_health = 25.0
 healthbar = NodePath("../ProgressBar")
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-150, -86.602)
+polygon = PackedVector2Array(50, 0, 100, 0, 125, 43.301, 100, 86.603, 50, 86.603, 25, 43.301)
+
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 4
 collision_mask = 8

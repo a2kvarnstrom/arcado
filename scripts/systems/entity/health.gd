@@ -10,17 +10,37 @@ signal health_depleted
 @export var health_regen: float = 0.0 : set = set_regen, get = get_regen
 
 var immortality_timer: Timer = null
+var regen_timer: Timer = null
 
 @onready var health: float = max_health : set = set_health, get = get_health
 
 @export var healthbar: ProgressBar
 @export var texture_healthbar: TextureProgressBar
+   
+func _ready() -> void:
+	start_regen_timer()
 
 func _process(_delta: float) -> void:
 	if(healthbar != null):
 		healthbar.value = health
 	if(texture_healthbar != null):
 		texture_healthbar.value = health
+	if(health_regen != 0 && regen_timer.is_stopped() && health != max_health):
+		start_regen_timer()
+
+func start_regen_timer() -> void:
+	if(regen_timer == null):
+		regen_timer = Timer.new()
+		regen_timer.one_shot = true
+		add_child(regen_timer)
+	
+	if(!regen_timer.timeout.is_connected(regen)):
+		regen_timer.timeout.connect(regen)
+	regen_timer.set_wait_time(1 / health_regen)
+	regen_timer.start()
+
+func regen() -> void:
+	set_health(health + 1)
 
 func set_max_health(value: float) -> void:
 	var clamped_value: float = 1.0 if value <= 0.0 else value

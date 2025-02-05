@@ -5,6 +5,7 @@
 
 [node name="OffScreenMarker" type="Node2D"]
 script = ExtResource("1_thiuo")
+color = Color(1, 1, 1, 1)
 
 [node name="Sprite" type="Node2D" parent="."]
 script = ExtResource("2_50r6j")

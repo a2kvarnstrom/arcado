@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var death_reset: Timer = $DeathReset
 @onready var upgrades_ui: Control = $"../CanvasLayer/UpgradesUI"
 @onready var hurtbox: Hurtbox = $Hurtbox
+@onready var fps_counter: Label = $"../CanvasLayer/FpsCounter"
 
 @export var SPEED: float = 300.0
 @export var weapon: Globals.WEAPONS
@@ -23,6 +24,7 @@ var d_res: float = 0.0
 var iframes: float = 0.0
 
 func _process(delta: float) -> void:
+	fps_counter.text = "FPS: " + str(Engine.get_frames_per_second())
 	if(iframes > 0):
 		iframes -= delta
 	else:

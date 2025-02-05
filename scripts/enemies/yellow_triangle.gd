@@ -8,9 +8,9 @@ extends CharacterBody2D
 @onready var off_screen_marker: Node2D = $OffScreenMarker
 @onready var main: Node = get_tree().get_root().get_node("main")
 
-var cooldown: float
+var cooldown: float = 1.5
 var player: CharacterBody2D
-var timer: float = 3
+var timer: float = -0.5
 var attacking: bool = false
 
 func _ready() -> void:
