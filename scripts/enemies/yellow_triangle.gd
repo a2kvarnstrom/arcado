@@ -19,7 +19,6 @@ func _ready() -> void:
 	velocity = Vector2(0.0, 0.0)
 	lasers[0].rotation = deg_to_rad(-90)
 	lasers[1].rotation = deg_to_rad(90)
-	print("triangle")
 
 func _draw() -> void:
 	draw_polygon(PackedVector2Array([Vector2(0.0, -70), Vector2(70, 70), Vector2(-70, 70)]), PackedColorArray([Color.YELLOW]))

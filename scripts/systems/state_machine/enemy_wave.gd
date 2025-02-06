@@ -45,7 +45,6 @@ func enter() -> void:
 	wave_timer = time
 	progress.max_value = wave_timer
 	spawn_timer = current_sequence.get_time() / current_sequence.get_amount()
-	print("wave timer " + str(wave_timer))
 
 func update(delta: float) -> void:
 	wave_counter.text = "Wave: " + str(current_wave + 1)

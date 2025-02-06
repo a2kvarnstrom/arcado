@@ -1,20 +1,20 @@
 [gd_scene load_steps=6 format=3 uid="uid://ydgo8j75g08a"]
 
-[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="1_y3hnq"]
-[ext_resource type="Script" path="res://scripts/enemies/pink_ring.gd" id="1_yuy40"]
-[ext_resource type="PackedScene" uid="uid://ns86d0hmx05g" path="res://scenes/off_screen_marker.tscn" id="2_co2ox"]
-[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="2_u7whp"]
+[ext_resource type="Script" path="res://scripts/enemies/pink_ring.gd" id="1_0tot6"]
+[ext_resource type="PackedScene" uid="uid://ns86d0hmx05g" path="res://scenes/off_screen_marker.tscn" id="2_iynjd"]
+[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="3_8gu2g"]
+[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="4_1qa1g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5dx4l"]
 radius = 30.0
 
 [node name="PinkRing" type="CharacterBody2D"]
-script = ExtResource("1_yuy40")
+script = ExtResource("1_0tot6")
 
-[node name="OffScreenMarker" parent="." instance=ExtResource("2_co2ox")]
+[node name="OffScreenMarker" parent="." instance=ExtResource("2_iynjd")]
 
 [node name="Health" type="Node" parent="." node_paths=PackedStringArray("healthbar")]
-script = ExtResource("1_y3hnq")
+script = ExtResource("3_8gu2g")
 max_health = 20.0
 healthbar = NodePath("../ProgressBar")
 
@@ -24,7 +24,7 @@ shape = SubResource("CircleShape2D_5dx4l")
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 4
 collision_mask = 8
-script = ExtResource("2_u7whp")
+script = ExtResource("4_1qa1g")
 health = NodePath("../Health")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]

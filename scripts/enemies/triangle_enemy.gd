@@ -11,7 +11,6 @@ var player: CharacterBody2D
 func _ready() -> void:
 	off_screen_marker.color = Color.GREEN
 	player = get_tree().get_first_node_in_group("Player")
-	print("triangle")
 
 func _on_health_health_depleted() -> void:
 	queue_free()

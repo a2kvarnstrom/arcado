@@ -2,6 +2,7 @@ extends Control
 
 @onready var options: PackedScene = preload("res://scenes/options.tscn")
 @onready var credits: PackedScene = preload("res://scenes/credits.tscn")
+@onready var menu: VBoxContainer = $VBoxContainer
 
 func _ready() -> void:
 	$VBoxContainer/VBoxContainer/StartButton.grab_focus()
@@ -12,12 +13,12 @@ func _on_start_button_pressed() -> void:
 func _on_options_button_pressed() -> void:
 	var options_menu = options.instantiate()
 	get_tree().current_scene.add_child(options_menu)
-	$VBoxContainer.visible = false
+	menu.visible = false
 
 func _on_credits_button_pressed() -> void:
 	var credits_menu = credits.instantiate()
 	get_tree().current_scene.add_child(credits_menu)
-	$VBoxContainer.visible = false
+	menu.visible = false
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()

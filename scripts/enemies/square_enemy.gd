@@ -3,7 +3,6 @@ extends CharacterBody2D
 
 func _ready() -> void:
 	off_screen_marker.color = Color.RED
-	print("square")
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()

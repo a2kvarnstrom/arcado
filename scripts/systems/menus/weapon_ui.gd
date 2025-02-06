@@ -1,26 +1,22 @@
 extends Control
 
+var player: Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	player = get_tree().get_first_node_in_group("Player")
 
 
 func _on_doble_project_gun_pressed() -> void:
-	pass # Replace with function body.
+	player.weapon.set_weapon(Globals.WEAPONS.DOUBLE)
 
 
 func _on_heave_ball_gun_pressed() -> void:
-	pass # Replace with function body.
+	player.weapon.set_weapon(Globals.WEAPONS.HEAVY)
 
 
 func _on_expanding_circel_gun_pressed() -> void:
-	pass # Replace with function body.
+	player.weapon.set_weapon(Globals.WEAPONS.GROWING)
 
 
 func _on_button_pressed() -> void:

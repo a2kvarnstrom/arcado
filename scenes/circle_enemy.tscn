@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://suderjlct2q"]
 
-[ext_resource type="Script" path="res://scripts/enemies/circle_enemy.gd" id="1_t16ow"]
-[ext_resource type="PackedScene" uid="uid://ns86d0hmx05g" path="res://scenes/off_screen_marker.tscn" id="2_7fjq8"]
-[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="4_qb62g"]
-[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="5_bsgsf"]
-[ext_resource type="Script" path="res://scripts/systems/entity/hitbox.gd" id="6_3f0pn"]
+[ext_resource type="Script" path="res://scripts/enemies/circle_enemy.gd" id="1_x4lti"]
+[ext_resource type="PackedScene" uid="uid://ns86d0hmx05g" path="res://scenes/off_screen_marker.tscn" id="2_wcp42"]
+[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="3_r2aam"]
+[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="4_75eqj"]
+[ext_resource type="Script" path="res://scripts/systems/entity/hitbox.gd" id="5_y6cve"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6v3y0"]
 radius = 35.0
@@ -13,12 +13,12 @@ radius = 35.0
 radius = 35.0
 
 [node name="CircleEnemy" type="CharacterBody2D"]
-script = ExtResource("1_t16ow")
+script = ExtResource("1_x4lti")
 
-[node name="OffScreenMarker" parent="." instance=ExtResource("2_7fjq8")]
+[node name="OffScreenMarker" parent="." instance=ExtResource("2_wcp42")]
 
 [node name="Health" type="Node" parent="."]
-script = ExtResource("4_qb62g")
+script = ExtResource("3_r2aam")
 max_health = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -27,7 +27,7 @@ shape = SubResource("CircleShape2D_6v3y0")
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 6
 collision_mask = 9
-script = ExtResource("5_bsgsf")
+script = ExtResource("4_75eqj")
 health = NodePath("../Health")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
@@ -35,7 +35,7 @@ shape = SubResource("CircleShape2D_6v3y0")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2
-script = ExtResource("6_3f0pn")
+script = ExtResource("5_y6cve")
 damage = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]

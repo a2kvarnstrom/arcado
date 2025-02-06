@@ -11,7 +11,6 @@ var player: CharacterBody2D
 func _ready() -> void:
 	off_screen_marker.color = Color.HOT_PINK
 	player = get_tree().get_first_node_in_group("Player")
-	print("ring")
 
 func _process(delta: float) -> void:
 	if(shoot_cooldown > 0):

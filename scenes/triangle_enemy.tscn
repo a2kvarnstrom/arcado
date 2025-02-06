@@ -1,20 +1,20 @@
 [gd_scene load_steps=6 format=3 uid="uid://votgru8trgx8"]
 
-[ext_resource type="Script" path="res://scripts/enemies/triangle_enemy.gd" id="1_c0kp1"]
-[ext_resource type="PackedScene" uid="uid://ns86d0hmx05g" path="res://scenes/off_screen_marker.tscn" id="2_a38is"]
-[ext_resource type="PackedScene" uid="uid://5q38gco3sk5l" path="res://scenes/laser.tscn" id="2_oglgs"]
-[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="5_lkrhj"]
-[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="6_4let0"]
+[ext_resource type="Script" path="res://scripts/enemies/triangle_enemy.gd" id="1_vn4bj"]
+[ext_resource type="PackedScene" uid="uid://ns86d0hmx05g" path="res://scenes/off_screen_marker.tscn" id="2_gedba"]
+[ext_resource type="PackedScene" uid="uid://5q38gco3sk5l" path="res://scenes/laser.tscn" id="3_kre58"]
+[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="4_a0f6x"]
+[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="5_pemyx"]
 
 [node name="TriangleEnemy" type="CharacterBody2D"]
-script = ExtResource("1_c0kp1")
+script = ExtResource("1_vn4bj")
 
-[node name="OffScreenMarker" parent="." instance=ExtResource("2_a38is")]
+[node name="OffScreenMarker" parent="." instance=ExtResource("2_gedba")]
 
-[node name="Laser" parent="." instance=ExtResource("2_oglgs")]
+[node name="Laser" parent="." instance=ExtResource("3_kre58")]
 
 [node name="Health" type="Node" parent="." node_paths=PackedStringArray("healthbar")]
-script = ExtResource("5_lkrhj")
+script = ExtResource("4_a0f6x")
 max_health = 20.0
 healthbar = NodePath("../ProgressBar")
 
@@ -24,7 +24,7 @@ polygon = PackedVector2Array(0, -55, 55, 55, -55, 55)
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 4
 collision_mask = 9
-script = ExtResource("6_4let0")
+script = ExtResource("5_pemyx")
 health = NodePath("../Health")
 pierce = 2
 

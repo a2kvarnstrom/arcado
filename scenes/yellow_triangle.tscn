@@ -1,19 +1,19 @@
 [gd_scene load_steps=6 format=3 uid="uid://6aey5w2fps3r"]
 
-[ext_resource type="Script" path="res://scripts/enemies/yellow_triangle.gd" id="1_fhx5e"]
-[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="1_ocecq"]
-[ext_resource type="PackedScene" uid="uid://ns86d0hmx05g" path="res://scenes/off_screen_marker.tscn" id="2_0xvks"]
-[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="2_pfda7"]
-[ext_resource type="PackedScene" uid="uid://5q38gco3sk5l" path="res://scenes/laser.tscn" id="7_tqt4v"]
+[ext_resource type="Script" path="res://scripts/enemies/yellow_triangle.gd" id="1_e06ya"]
+[ext_resource type="PackedScene" uid="uid://ns86d0hmx05g" path="res://scenes/off_screen_marker.tscn" id="2_g84c1"]
+[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="3_lxliw"]
+[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="4_e6x61"]
+[ext_resource type="PackedScene" uid="uid://5q38gco3sk5l" path="res://scenes/laser.tscn" id="5_07h52"]
 
 [node name="YellowTriangle" type="CharacterBody2D" node_paths=PackedStringArray("lasers")]
-script = ExtResource("1_fhx5e")
+script = ExtResource("1_e06ya")
 lasers = [NodePath("Laser"), NodePath("Laser2")]
 
-[node name="OffScreenMarker" parent="." instance=ExtResource("2_0xvks")]
+[node name="OffScreenMarker" parent="." instance=ExtResource("2_g84c1")]
 
 [node name="Health" type="Node" parent="." node_paths=PackedStringArray("healthbar")]
-script = ExtResource("1_ocecq")
+script = ExtResource("3_lxliw")
 max_health = 30.0
 healthbar = NodePath("../ProgressBar")
 
@@ -23,7 +23,7 @@ polygon = PackedVector2Array(0, -70, 70, 70, -70, 70)
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 4
 collision_mask = 8
-script = ExtResource("2_pfda7")
+script = ExtResource("4_e6x61")
 health = NodePath("../Health")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hurtbox"]
@@ -43,8 +43,8 @@ step = 1.0
 value = 30.0
 show_percentage = false
 
-[node name="Laser" parent="." instance=ExtResource("7_tqt4v")]
+[node name="Laser" parent="." instance=ExtResource("5_07h52")]
 
-[node name="Laser2" parent="." instance=ExtResource("7_tqt4v")]
+[node name="Laser2" parent="." instance=ExtResource("5_07h52")]
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]

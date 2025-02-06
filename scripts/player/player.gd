@@ -6,12 +6,13 @@ extends CharacterBody2D
 @onready var label: Label = %deathhaha
 @onready var main: Node2D = $".."
 @onready var death_reset: Timer = $DeathReset
-@onready var upgrades_ui: Control = $"../CanvasLayer/UpgradesUI"
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var fps_counter: Label = $"../CanvasLayer/FpsCounter"
+@onready var canvas_layer: CanvasLayer = $"../CanvasLayer"
+@onready var pause_menu: PackedScene = preload("res://scenes/pause_menu.tscn")
 
 @export var SPEED: float = 300.0
-@export var weapon: Globals.WEAPONS
+@export var weapon: Weapon
 
 var projectile = load("res://scenes/projectile.tscn")
 var shoot_cooldown: float = 0.0
@@ -19,7 +20,6 @@ var radius: float = 80.0
 var angle: float = 0.0
 var spin_speed: float = 0.0
 var dmg: float = 10
-var atk_speed: float = 2
 var d_res: float = 0.0
 var iframes: float = 0.0
 
@@ -67,24 +67,14 @@ func shoot() -> void:
 	if(shoot_cooldown > 0.0):
 		return
 	
-	shoot_cooldown = 1/atk_speed
-	spin_speed = 0.3
-	
 	var direction: float = (circle.global_position - global_position).angle() + deg_to_rad(90)
 	
-	var instance: CharacterBody2D = projectile.instantiate()
+	var projectiles: Array = weapon.shoot(direction, circle.global_position)
+	for i in projectiles:
+		main.add_child.call_deferred(i)
 	
-	instance.dir = direction 
-	instance.spawn_pos = circle.global_position
-	instance.spawn_rot = instance.dir + deg_to_rad(90)
-	instance.zdex = z_index - 1
-	instance.get_node("Hitbox").set_collision_layer_value(4, true)
-	instance.get_node("Hitbox").set_collision_layer_value(2, false)
-	instance.get_node("Hitbox").set_collision_mask_value(3, true)
-	instance.get_node("Hitbox").set_collision_mask_value(1, false)
-	instance.dmg = dmg
-	instance.lifespan = 2.5
-	main.add_child.call_deferred(instance)
+	shoot_cooldown = 1/weapon.atk_speed
+	spin_speed = 0.3
 
 func circular_motion():
 	angle += spin_speed * get_process_delta_time()
@@ -95,7 +85,13 @@ func circular_motion():
 
 func pause() -> void:
 	Engine.time_scale = !Engine.time_scale
-	upgrades_ui.visible = !upgrades_ui.visible 
+
+	if(Engine.time_scale != 1.0):
+		var menu: Control = pause_menu.instantiate()
+		canvas_layer.add_child(menu)
+	else:
+		var menu: Control = canvas_layer.get_node("./PauseMenu")
+		menu.resume()
 
 func _draw() -> void:
 	draw_circle(Vector2(0,0), 55.0, Color.WHITE, true, -1.0, true)

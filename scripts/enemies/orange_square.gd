@@ -11,7 +11,6 @@ var cooldown: float = 1
 
 
 func _ready() -> void:
-	print("square")
 	player = get_tree().get_first_node_in_group("Player")
 
 func _physics_process(delta: float) -> void:
