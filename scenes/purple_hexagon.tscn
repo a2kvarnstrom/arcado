@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bxcadl4bsfmln"]
 
-[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="1_b3kl4"]
-[ext_resource type="Script" path="res://scripts/enemies/purple_hexagon.gd" id="1_efdyj"]
-[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="2_6m8v8"]
+[ext_resource type="Script" uid="uid://bu565kalhpyh2" path="res://scripts/systems/entity/health.gd" id="1_b3kl4"]
+[ext_resource type="Script" uid="uid://bve1festns8qo" path="res://scripts/enemies/purple_hexagon.gd" id="1_efdyj"]
+[ext_resource type="Script" uid="uid://cj6kq3ictlcit" path="res://scripts/systems/entity/hurtbox.gd" id="2_6m8v8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k7ta2"]
 radius = 225.0
@@ -12,11 +12,11 @@ script = ExtResource("1_efdyj")
 
 [node name="Health" type="Node" parent="." node_paths=PackedStringArray("healthbar")]
 script = ExtResource("1_b3kl4")
-max_health = 25.0
+max_health = 15.0
 healthbar = NodePath("../ProgressBar")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(-150, -86.602)
+position = Vector2(-75, -43.301)
 polygon = PackedVector2Array(50, 0, 100, 0, 125, 43.301, 100, 86.603, 50, 86.603, 25, 43.301)
 
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
@@ -30,10 +30,10 @@ position = Vector2(-75, -43.301)
 polygon = PackedVector2Array(50, 0, 100, 0, 125, 43.301, 100, 86.603, 50, 86.603, 25, 43.301)
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = -15.0
-offset_top = 24.0
-offset_right = 15.0
-offset_bottom = 29.0
+offset_left = -22.0
+offset_top = 50.0
+offset_right = 22.0
+offset_bottom = 55.0
 max_value = 25.0
 step = 1.0
 value = 25.0

@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://bjc5d8yo4bah2"]
 
-[ext_resource type="Script" path="res://scripts/enemies/square_enemy.gd" id="1_ksr17"]
+[ext_resource type="Script" uid="uid://gsnqs7ki8w70" path="res://scripts/enemies/square_enemy.gd" id="1_ksr17"]
 [ext_resource type="PackedScene" uid="uid://ns86d0hmx05g" path="res://scenes/off_screen_marker.tscn" id="2_pj6pp"]
-[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="3_honty"]
-[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="4_x472f"]
-[ext_resource type="Script" path="res://scripts/systems/state_machine/state_machine.gd" id="5_1a2vk"]
-[ext_resource type="Script" path="res://scripts/systems/state_machine/follow_state.gd" id="6_rv85f"]
-[ext_resource type="Script" path="res://scripts/systems/state_machine/shooting_state.gd" id="7_135dj"]
+[ext_resource type="Script" uid="uid://cj6kq3ictlcit" path="res://scripts/systems/entity/hurtbox.gd" id="3_honty"]
+[ext_resource type="Script" uid="uid://bu565kalhpyh2" path="res://scripts/systems/entity/health.gd" id="4_x472f"]
+[ext_resource type="Script" uid="uid://cqk2ryqnnffsg" path="res://scripts/systems/state_machine/state_machine.gd" id="5_1a2vk"]
+[ext_resource type="Script" uid="uid://cqhuq3fo2b0m" path="res://scripts/systems/state_machine/follow_state.gd" id="6_rv85f"]
+[ext_resource type="Script" uid="uid://ca0wpoc3gmwvr" path="res://scripts/systems/state_machine/shooting_state.gd" id="7_135dj"]
 [ext_resource type="PackedScene" uid="uid://dp64pg8j7buhl" path="res://scenes/projectile.tscn" id="8_l8xsi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iyj5g"]

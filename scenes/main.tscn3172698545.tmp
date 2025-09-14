@@ -1,0 +1,337 @@
+[gd_scene load_steps=48 format=3 uid="uid://dc6bx5w13ev0i"]
+
+[ext_resource type="PackedScene" uid="uid://dolejrjv5sh2d" path="res://scenes/player.tscn" id="1_dm8j8"]
+[ext_resource type="Script" uid="uid://cp0m4yoj5uj5g" path="res://scripts/systems/resources/weapon.gd" id="2_gf43j"]
+[ext_resource type="Script" uid="uid://cqk2ryqnnffsg" path="res://scripts/systems/state_machine/state_machine.gd" id="3_sjgo6"]
+[ext_resource type="Script" uid="uid://cdwtbt67rq5l4" path="res://scripts/systems/state_machine/game_start.gd" id="4_g2wcb"]
+[ext_resource type="Script" uid="uid://cegvucmiehawp" path="res://scripts/systems/state_machine/game_idle.gd" id="5_hyg5u"]
+[ext_resource type="Script" uid="uid://bf0rincjbgp6a" path="res://scripts/systems/state_machine/enemy_wave.gd" id="6_g3hse"]
+[ext_resource type="Script" uid="uid://c6761cvxuf5ii" path="res://scripts/systems/resources/wave.gd" id="7_uicfu"]
+[ext_resource type="Script" uid="uid://dwu6mkggeyqcg" path="res://scripts/systems/resources/enemy_sequence.gd" id="8_1rhaj"]
+[ext_resource type="Script" uid="uid://pcg4m3jqlijt" path="res://scripts/systems/entity/enemy_count.gd" id="9_4luj5"]
+[ext_resource type="Theme" uid="uid://cdp1vqedgum7d" path="res://themes/menu.tres" id="10_j7fst"]
+
+[sub_resource type="Resource" id="Resource_y6axt"]
+script = ExtResource("2_gf43j")
+current_weapon = 0
+damage_mult = 1.0
+
+[sub_resource type="Resource" id="Resource_noe04"]
+script = ExtResource("8_1rhaj")
+enemy = 0
+amount = 2
+time = 3.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_lhi3u"]
+script = ExtResource("7_uicfu")
+enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_noe04")])
+current_sequence = 0
+
+[sub_resource type="Resource" id="Resource_502yg"]
+script = ExtResource("8_1rhaj")
+enemy = 1
+amount = 1
+time = 2.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_8n4c8"]
+script = ExtResource("8_1rhaj")
+enemy = 0
+amount = 1
+time = 2.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_6216w"]
+script = ExtResource("7_uicfu")
+enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_502yg"), SubResource("Resource_8n4c8")])
+current_sequence = 0
+
+[sub_resource type="Resource" id="Resource_h12hi"]
+script = ExtResource("8_1rhaj")
+enemy = 0
+amount = 2
+time = 2.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_s60cv"]
+script = ExtResource("8_1rhaj")
+enemy = 1
+amount = 1
+time = 3.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_5kgk1"]
+script = ExtResource("7_uicfu")
+enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_h12hi"), SubResource("Resource_s60cv")])
+current_sequence = 0
+
+[sub_resource type="Resource" id="Resource_y6bmt"]
+script = ExtResource("8_1rhaj")
+enemy = 0
+amount = 1
+time = 1.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_fy1yx"]
+script = ExtResource("8_1rhaj")
+enemy = 1
+amount = 2
+time = 5.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_chlqa"]
+script = ExtResource("7_uicfu")
+enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_y6bmt"), SubResource("Resource_fy1yx")])
+current_sequence = 0
+
+[sub_resource type="Resource" id="Resource_pi5ua"]
+script = ExtResource("8_1rhaj")
+enemy = 0
+amount = 3
+time = 5.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_2vwf7"]
+script = ExtResource("8_1rhaj")
+enemy = 1
+amount = 3
+time = 5.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_58r3t"]
+script = ExtResource("7_uicfu")
+enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_pi5ua"), SubResource("Resource_2vwf7")])
+current_sequence = 0
+
+[sub_resource type="Resource" id="Resource_2ehab"]
+script = ExtResource("8_1rhaj")
+enemy = 2
+amount = 1
+time = 1.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_vpxms"]
+script = ExtResource("7_uicfu")
+enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_2ehab")])
+current_sequence = 0
+
+[sub_resource type="Resource" id="Resource_k5fdm"]
+script = ExtResource("8_1rhaj")
+enemy = 1
+amount = 1
+time = 2.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_lnsv6"]
+script = ExtResource("8_1rhaj")
+enemy = 2
+amount = 1
+time = 3.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_wqvby"]
+script = ExtResource("8_1rhaj")
+enemy = 1
+amount = 2
+time = 1.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_gwuoj"]
+script = ExtResource("8_1rhaj")
+enemy = 0
+amount = 2
+time = 3.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_2r3ty"]
+script = ExtResource("7_uicfu")
+enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_k5fdm"), SubResource("Resource_lnsv6"), SubResource("Resource_wqvby"), SubResource("Resource_gwuoj")])
+current_sequence = 0
+
+[sub_resource type="Resource" id="Resource_6bf2c"]
+script = ExtResource("8_1rhaj")
+enemy = 2
+amount = 1
+time = 2.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_x1g4s"]
+script = ExtResource("8_1rhaj")
+enemy = 1
+amount = 3
+time = 4.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_vltxg"]
+script = ExtResource("8_1rhaj")
+enemy = 0
+amount = 2
+time = 1.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_ety5v"]
+script = ExtResource("7_uicfu")
+enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_6bf2c"), SubResource("Resource_x1g4s"), SubResource("Resource_vltxg")])
+current_sequence = 0
+
+[sub_resource type="Resource" id="Resource_66ohf"]
+script = ExtResource("8_1rhaj")
+enemy = 0
+amount = 10
+time = 5.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_we3vm"]
+script = ExtResource("7_uicfu")
+enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_66ohf")])
+current_sequence = 0
+
+[sub_resource type="Resource" id="Resource_5hkt7"]
+script = ExtResource("8_1rhaj")
+enemy = 3
+amount = 1
+time = 3.0
+difficulty = 0
+
+[sub_resource type="Resource" id="Resource_qx6gb"]
+script = ExtResource("7_uicfu")
+enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_5hkt7")])
+current_sequence = 0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gj0ba"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_20lyg"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lcx4f"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u5om0"]
+
+[sub_resource type="Gradient" id="Gradient_6bo3b"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rupqn"]
+gradient = SubResource("Gradient_6bo3b")
+
+[sub_resource type="Environment" id="Environment_rkgx4"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.15
+glow_blend_mode = 0
+fog_light_color = Color(1, 1, 1, 1)
+fog_sun_scatter = 0.95
+adjustment_color_correction = SubResource("GradientTexture1D_rupqn")
+
+[node name="main" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+editor_draw_limits = true
+
+[node name="Player" parent="." instance=ExtResource("1_dm8j8")]
+SPEED = null
+weapon = SubResource("Resource_y6axt")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_sjgo6")
+initial_state = NodePath("GameStart")
+
+[node name="GameStart" type="Node" parent="StateMachine" node_paths=PackedStringArray("progress", "progress_text")]
+script = ExtResource("4_g2wcb")
+progress = NodePath("../../CanvasLayer/ProgressBar")
+progress_text = NodePath("../../CanvasLayer/Progress")
+
+[node name="GameIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("progress", "progress_text")]
+script = ExtResource("5_hyg5u")
+progress = NodePath("../../CanvasLayer/ProgressBar")
+progress_text = NodePath("../../CanvasLayer/Progress")
+
+[node name="EnemyWave" type="Node" parent="StateMachine" node_paths=PackedStringArray("progress", "progress_text", "wave_counter")]
+script = ExtResource("6_g3hse")
+waves = Array[ExtResource("7_uicfu")]([SubResource("Resource_lhi3u"), SubResource("Resource_6216w"), SubResource("Resource_5kgk1"), SubResource("Resource_chlqa"), SubResource("Resource_58r3t"), SubResource("Resource_vpxms"), SubResource("Resource_2r3ty"), SubResource("Resource_ety5v"), SubResource("Resource_we3vm"), SubResource("Resource_qx6gb")])
+progress = NodePath("../../CanvasLayer/ProgressBar")
+progress_text = NodePath("../../CanvasLayer/Progress")
+wave_counter = NodePath("../../CanvasLayer/WaveCounter")
+
+[node name="EnemyCount" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("9_4luj5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 65535
+collision_mask = 65535
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 540)
+shape = SubResource("WorldBoundaryShape2D_gj0ba")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -540)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_20lyg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-960, 0)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_lcx4f")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(960, 0)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_u5om0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+visible = false
+offset_right = 1920.0
+offset_bottom = 46.0
+value = 100.0
+show_percentage = false
+
+[node name="Progress" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -960.0
+offset_right = 960.0
+offset_bottom = 46.0
+grow_horizontal = 2
+theme = ExtResource("10_j7fst")
+theme_override_font_sizes/font_size = 33
+text = "3.0/3.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="deathhaha" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+offset_left = 166.0
+offset_top = 289.0
+offset_right = 1593.0
+offset_bottom = 835.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 400
+text = "u ded :("
+
+[node name="WaveCounter" type="Label" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -71.0
+offset_right = 279.0
+grow_vertical = 0
+theme = ExtResource("10_j7fst")
+text = "Wave: 1"
+
+[node name="FpsCounter" type="Label" parent="CanvasLayer"]
+offset_right = 68.0
+offset_bottom = 23.0
+text = "FPS: 60.0"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rkgx4")
+
+[connection signal="child_entered_tree" from="StateMachine/EnemyWave" to="EnemyCount" method="_on_enemy_wave_child_entered_tree"]
+[connection signal="child_exiting_tree" from="StateMachine/EnemyWave" to="EnemyCount" method="_on_enemy_wave_child_exiting_tree"]

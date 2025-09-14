@@ -51,7 +51,7 @@ func set_weapon(weapon: Globals.WEAPONS) -> void:
 			projectile = Globals.PROJECTILES.CIRCLE
 			atk_speed = 0.5
 			lifespan = 5.0
-			projectile_count = 1
+			projectile_count = 1 
 			projectile_size = 0.5
 			projectile_speed = 350.0
 		
@@ -62,7 +62,7 @@ func set_weapon(weapon: Globals.WEAPONS) -> void:
 			atk_speed = 0.5
 			lifespan = 5.0
 			projectile_count = 1
-			projectile_size = 4.0
+			projectile_size = 2.0
 			projectile_speed = 350.0
 
 func shoot(direction: float, circle_pos: Vector2) -> Array[CharacterBody2D]:

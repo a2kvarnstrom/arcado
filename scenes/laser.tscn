@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://5q38gco3sk5l"]
 
-[ext_resource type="Script" path="res://scripts/enemies/laser.gd" id="1_rqmo0"]
-[ext_resource type="Script" path="res://scripts/systems/entity/hitbox.gd" id="1_xcarr"]
+[ext_resource type="Script" uid="uid://co1pq6wv7xe2j" path="res://scripts/enemies/laser.gd" id="1_rqmo0"]
+[ext_resource type="Script" uid="uid://r4mivdeuyesd" path="res://scripts/systems/entity/hitbox.gd" id="1_xcarr"]
 
 [sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_wjyo7"]
 length = 5000.0

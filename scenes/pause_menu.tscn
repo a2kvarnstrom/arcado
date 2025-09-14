@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bx840chrggirn"]
 
-[ext_resource type="Script" path="res://scripts/systems/menus/pause_menu.gd" id="1_di3gk"]
+[ext_resource type="Script" uid="uid://vjl5jqslex0m" path="res://scripts/systems/menus/pause_menu.gd" id="1_di3gk"]
 [ext_resource type="Theme" uid="uid://cdp1vqedgum7d" path="res://themes/menu.tres" id="1_tee13"]
-[ext_resource type="Shader" path="res://shaders/pause_blur.gdshader" id="2_83pee"]
+[ext_resource type="Shader" uid="uid://ttp64b40x1wj" path="res://shaders/pause_blur.gdshader" id="2_83pee"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w0y6w"]
 shader = ExtResource("2_83pee")

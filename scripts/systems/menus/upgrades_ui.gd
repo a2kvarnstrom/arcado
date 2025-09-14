@@ -3,7 +3,7 @@ extends Control
 @export var player: Player 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass 
+	player = get_tree().get_first_node_in_group("Player")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
@@ -15,13 +15,8 @@ func _on_dmg_pressed() -> void:
 func _on_hp_pressed() -> void:
 	player.health.set_max_health(player.health.get_max_health() + 5)
 
-
-func _on_def_pressed() -> void:
-	pass # Replace with function body.
-
-
 func _on_atkspeed_pressed() -> void:
-	player.atk_speed += 0.1
+	player.weapon.atk_speed += 0.1
 
 
 func _on_mvmntspeed_pressed() -> void:

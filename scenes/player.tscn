@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://dolejrjv5sh2d"]
 
-[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_n4mhy"]
-[ext_resource type="Script" path="res://scripts/systems/resources/weapon.gd" id="2_o3a6b"]
-[ext_resource type="Script" path="res://scripts/player/circle.gd" id="2_q8roa"]
-[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="3_8fvqg"]
-[ext_resource type="Script" path="res://scripts/systems/entity/hitbox.gd" id="3_21x68"]
-[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="4_4m4tg"]
+[ext_resource type="Script" uid="uid://c8n1of7mto21s" path="res://scripts/player/player.gd" id="1_n4mhy"]
+[ext_resource type="Script" uid="uid://cp0m4yoj5uj5g" path="res://scripts/systems/resources/weapon.gd" id="2_o3a6b"]
+[ext_resource type="Script" uid="uid://gbvrn8dw4uib" path="res://scripts/player/circle.gd" id="2_q8roa"]
+[ext_resource type="Script" uid="uid://bu565kalhpyh2" path="res://scripts/systems/entity/health.gd" id="3_8fvqg"]
+[ext_resource type="Script" uid="uid://r4mivdeuyesd" path="res://scripts/systems/entity/hitbox.gd" id="3_21x68"]
+[ext_resource type="Script" uid="uid://cj6kq3ictlcit" path="res://scripts/systems/entity/hurtbox.gd" id="4_4m4tg"]
 
 [sub_resource type="Resource" id="Resource_g2v8j"]
 script = ExtResource("2_o3a6b")

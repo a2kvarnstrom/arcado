@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://suderjlct2q"]
 
-[ext_resource type="Script" path="res://scripts/enemies/circle_enemy.gd" id="1_x4lti"]
+[ext_resource type="Script" uid="uid://8l65fmtm12lc" path="res://scripts/enemies/circle_enemy.gd" id="1_x4lti"]
 [ext_resource type="PackedScene" uid="uid://ns86d0hmx05g" path="res://scenes/off_screen_marker.tscn" id="2_wcp42"]
-[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="3_r2aam"]
-[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="4_75eqj"]
-[ext_resource type="Script" path="res://scripts/systems/entity/hitbox.gd" id="5_y6cve"]
+[ext_resource type="Script" uid="uid://bu565kalhpyh2" path="res://scripts/systems/entity/health.gd" id="3_r2aam"]
+[ext_resource type="Script" uid="uid://cj6kq3ictlcit" path="res://scripts/systems/entity/hurtbox.gd" id="4_75eqj"]
+[ext_resource type="Script" uid="uid://r4mivdeuyesd" path="res://scripts/systems/entity/hitbox.gd" id="5_y6cve"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6v3y0"]
 radius = 35.0

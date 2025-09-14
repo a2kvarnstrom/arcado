@@ -18,6 +18,10 @@ var regen_timer: Timer = null
 @export var texture_healthbar: TextureProgressBar
    
 func _ready() -> void:
+	if(healthbar):
+		healthbar.max_value = max_health
+	if(texture_healthbar):
+		texture_healthbar.max_value = max_health
 	start_regen_timer()
 
 func _process(_delta: float) -> void:

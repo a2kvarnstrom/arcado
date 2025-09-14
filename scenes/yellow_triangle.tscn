@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://6aey5w2fps3r"]
 
-[ext_resource type="Script" path="res://scripts/enemies/yellow_triangle.gd" id="1_e06ya"]
+[ext_resource type="Script" uid="uid://bs5rbxf1y4vu5" path="res://scripts/enemies/yellow_triangle.gd" id="1_e06ya"]
 [ext_resource type="PackedScene" uid="uid://ns86d0hmx05g" path="res://scenes/off_screen_marker.tscn" id="2_g84c1"]
-[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="3_lxliw"]
-[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="4_e6x61"]
+[ext_resource type="Script" uid="uid://bu565kalhpyh2" path="res://scripts/systems/entity/health.gd" id="3_lxliw"]
+[ext_resource type="Script" uid="uid://cj6kq3ictlcit" path="res://scripts/systems/entity/hurtbox.gd" id="4_e6x61"]
 [ext_resource type="PackedScene" uid="uid://5q38gco3sk5l" path="res://scenes/laser.tscn" id="5_07h52"]
 
 [node name="YellowTriangle" type="CharacterBody2D" node_paths=PackedStringArray("lasers")]

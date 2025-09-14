@@ -1,4 +1,4 @@
-class_name Player 
+class_name Player
 extends CharacterBody2D
 
 @onready var health: Health = $Health
@@ -14,6 +14,7 @@ extends CharacterBody2D
 @export var SPEED: float = 300.0
 @export var weapon: Weapon
 
+var damage_reduction: float = 0.0
 var projectile = load("res://scenes/projectile.tscn")
 var shoot_cooldown: float = 0.0
 var radius: float = 80.0
@@ -22,6 +23,7 @@ var spin_speed: float = 0.0
 var dmg: float = 10
 var d_res: float = 0.0
 var iframes: float = 0.0
+
 
 func _process(delta: float) -> void:
 	fps_counter.text = "FPS: " + str(Engine.get_frames_per_second())
@@ -33,7 +35,7 @@ func _process(delta: float) -> void:
 	
 	if(spin_speed <= 3.0):
 		spin_speed += delta * 3
-	
+	 
 	if(Input.is_action_just_pressed("shoot") && Engine.time_scale == 1):
 		shoot()
 	
@@ -44,22 +46,7 @@ func _process(delta: float) -> void:
 		pause()
 
 func _physics_process(delta: float) -> void:
-	delta *= 60
-	var x_vel: float = Input.get_axis("left", "right")
-	var y_vel: float = Input.get_axis("up", "down")
-	if(y_vel < 0):
-		velocity.y = -SPEED * delta
-	elif(y_vel > 0):
-		velocity.y = SPEED * delta 
-	else:
-		velocity.y = 0
-	
-	if(x_vel > 0):
-		velocity.x = SPEED * delta
-	elif(x_vel < 0):
-		velocity.x = -SPEED * delta
-	else:
-		velocity.x = 0
+	velocity = Vector2.ZERO.direction_to(Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))) * SPEED * delta * 60
 	if(Engine.time_scale == 1.0):
 		move_and_slide()
 

@@ -16,6 +16,8 @@ func _ready() -> void:
 func _on_area_entered(hit_box: Area2D) -> void:
 	if(hit_box != null && can_take_damage):
 		if(hit_box is Hitbox):
+			var total_dmg: float = 0.0
+			total_dmg = hit_box.damage * (100-damage_reduction)/100
 			health.set_health(health.health - (hit_box.damage * ((100-damage_reduction)/100)))
 			received_damage.emit(hit_box.damage)
 			if(hit_box.pierce):

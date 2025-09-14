@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://votgru8trgx8"]
 
-[ext_resource type="Script" path="res://scripts/enemies/triangle_enemy.gd" id="1_vn4bj"]
+[ext_resource type="Script" uid="uid://c3tja8eb8ve5j" path="res://scripts/enemies/triangle_enemy.gd" id="1_vn4bj"]
 [ext_resource type="PackedScene" uid="uid://ns86d0hmx05g" path="res://scenes/off_screen_marker.tscn" id="2_gedba"]
 [ext_resource type="PackedScene" uid="uid://5q38gco3sk5l" path="res://scenes/laser.tscn" id="3_kre58"]
-[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="4_a0f6x"]
-[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="5_pemyx"]
+[ext_resource type="Script" uid="uid://bu565kalhpyh2" path="res://scripts/systems/entity/health.gd" id="4_a0f6x"]
+[ext_resource type="Script" uid="uid://cj6kq3ictlcit" path="res://scripts/systems/entity/hurtbox.gd" id="5_pemyx"]
 
 [node name="TriangleEnemy" type="CharacterBody2D"]
 script = ExtResource("1_vn4bj")

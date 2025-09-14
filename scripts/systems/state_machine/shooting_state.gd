@@ -18,7 +18,7 @@ func physics_update(_delta: float) -> void:
 		transitioned.emit(self, "Following")
 	
 	var angle_to_player: float = enemy.global_position.direction_to(player.global_position).angle()
-	enemy.rotation = move_toward(enemy.rotation, angle_to_player, 1)
+	enemy.rotation = angle_to_player
 
 func update(delta: float) -> void:
 	if(cooldown <= 0):

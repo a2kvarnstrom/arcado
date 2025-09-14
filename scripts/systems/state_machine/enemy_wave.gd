@@ -7,6 +7,10 @@ extends State
 @export var progress_text: Label
 @export var wave_counter: Label
 
+@export var auto_gen_enemy_sequences: Array[EnemySequence]
+
+var player: Player
+
 var time: float
 
 var spawn_timer: float
@@ -38,6 +42,7 @@ var enum_enemies: Dictionary = {
 }
 
 func enter() -> void:
+	player = get_tree().get_first_node_in_group("Player")
 	current_sequence = waves[current_wave].get_current_sequence()
 	amount_left = current_sequence.amount
 	time_left = current_sequence.time / amount_left
@@ -61,11 +66,13 @@ func physics_update(delta: float) -> void:
 func update_wave() -> void:
 	current_sequence = waves[current_wave].get_current_sequence()
 	
-	#new wave
+	#next wave
 	if(waves[current_wave].current_sequence >= waves[current_wave].enemy_sequences.size()-1):
 		current_wave += 1
 		
-		if(current_wave >= waves.size()): create_random_wave()
+		#creates wave if needed
+		if(current_wave >= waves.size()):
+			create_random_wave()
 		
 		current_sequence = waves[current_wave].get_current_sequence()
 		amount_left = current_sequence.amount
@@ -81,7 +88,13 @@ func update_wave() -> void:
 func spawn_enemy(delta: float) -> void:
 	if(spawn_timer <= 0):
 		var instance: CharacterBody2D = enemy_list[current_sequence.enemy].instantiate()
-		instance.global_position = Vector2(randf_range(-960, 960), randf_range(-540, 540))
+		var spawn_pos: Vector2
+		while(true):
+			spawn_pos = Vector2(randf_range(-960, 960), randf_range(-540, 540))
+			var distance_to_player: float = spawn_pos.distance_squared_to(player.global_position)
+			if(distance_to_player > 250000):
+				instance.global_position = spawn_pos
+				break
 		add_child(instance)
 		amount_left -= 1
 		spawn_timer = current_sequence.get_time() / current_sequence.get_amount()
@@ -94,7 +107,7 @@ func create_random_wave() -> void:
 		var temp_sequence: EnemySequence = EnemySequence.new()
 		temp_sequence.amount = randi_range(1, 5)
 		temp_sequence.time = temp_sequence.amount * randf_range(0.5, 3)
-		temp_sequence.enemy = enum_enemies[randi_range(0, enemy_list.size()-1)]
+		temp_sequence.enemy = enum_enemies[randi_range(0, (enemy_list.size()-1))]
 		xtra_wave.enemy_sequences.push_back(temp_sequence)
 	waves.push_back(xtra_wave)
 

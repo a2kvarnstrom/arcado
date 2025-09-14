@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://cdiks8v6r8tgv"]
 
-[ext_resource type="Script" path="res://scripts/enemies/circle_projectile.gd" id="1_pg2s0"]
-[ext_resource type="Script" path="res://scripts/systems/entity/hitbox.gd" id="2_pq80o"]
-[ext_resource type="Script" path="res://scripts/systems/entity/hurtbox.gd" id="3_yvvyo"]
-[ext_resource type="Script" path="res://scripts/systems/entity/pierce.gd" id="4_hhncm"]
-[ext_resource type="Script" path="res://scripts/systems/entity/health.gd" id="4_tppc5"]
+[ext_resource type="Script" uid="uid://da07sgmwahgms" path="res://scripts/enemies/circle_projectile.gd" id="1_pg2s0"]
+[ext_resource type="Script" uid="uid://r4mivdeuyesd" path="res://scripts/systems/entity/hitbox.gd" id="2_pq80o"]
+[ext_resource type="Script" uid="uid://cj6kq3ictlcit" path="res://scripts/systems/entity/hurtbox.gd" id="3_yvvyo"]
+[ext_resource type="Script" uid="uid://bfu0qaetu04j" path="res://scripts/systems/entity/pierce.gd" id="4_hhncm"]
+[ext_resource type="Script" uid="uid://bu565kalhpyh2" path="res://scripts/systems/entity/health.gd" id="4_tppc5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mivhw"]
 radius = 15.0

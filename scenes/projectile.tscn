@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dp64pg8j7buhl"]
 
-[ext_resource type="Script" path="res://scripts/enemies/projectile.gd" id="1_mo4i7"]
-[ext_resource type="Script" path="res://scripts/systems/entity/hitbox.gd" id="2_lx2ac"]
-[ext_resource type="Script" path="res://scripts/systems/entity/pierce.gd" id="3_38nox"]
+[ext_resource type="Script" uid="uid://bqy7m7ijh75db" path="res://scripts/enemies/projectile.gd" id="1_mo4i7"]
+[ext_resource type="Script" uid="uid://r4mivdeuyesd" path="res://scripts/systems/entity/hitbox.gd" id="2_lx2ac"]
+[ext_resource type="Script" uid="uid://bfu0qaetu04j" path="res://scripts/systems/entity/pierce.gd" id="3_38nox"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8q0j"]
 size = Vector2(32, 12)
