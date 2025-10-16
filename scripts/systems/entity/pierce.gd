@@ -16,7 +16,6 @@ func set_max_pierce(value: int) -> void:
 	max_pierce_changed.emit(max_pierce-value)
 	max_pierce = value
 
-
 func get_pierce() -> int:
 	return pierce
 

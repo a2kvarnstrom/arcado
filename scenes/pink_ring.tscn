@@ -21,10 +21,11 @@ healthbar = NodePath("../ProgressBar")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5dx4l")
 
-[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("enemy", "health")]
 collision_layer = 4
 collision_mask = 8
 script = ExtResource("4_1qa1g")
+enemy = NodePath("..")
 health = NodePath("../Health")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]

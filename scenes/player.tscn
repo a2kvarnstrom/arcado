@@ -9,8 +9,6 @@
 
 [sub_resource type="Resource" id="Resource_g2v8j"]
 script = ExtResource("2_o3a6b")
-current_weapon = 0
-damage_mult = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c2wpq"]
 radius = 55.0
@@ -32,15 +30,18 @@ shape = SubResource("CircleShape2D_c2wpq")
 
 [node name="Hitbox" type="Area2D" parent="."]
 script = ExtResource("3_21x68")
+can_apply_status_effects = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_c2wpq")
 
-[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("enemy", "health")]
 collision_mask = 2
 script = ExtResource("4_4m4tg")
+enemy = NodePath("..")
 health = NodePath("../Health")
 pierce = 15
+damage_reduction = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_s4w6f")

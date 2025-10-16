@@ -6,7 +6,7 @@ extends State
 @export var projectile: PackedScene = load("res://scenes/projectile.tscn")
 
 var player: CharacterBody2D
-var cooldown: float = 1
+@onready var cooldown: float = enemy.cooldown
 
 func enter() -> void:
 	player = get_tree().get_first_node_in_group("Player")
@@ -23,7 +23,7 @@ func physics_update(_delta: float) -> void:
 func update(delta: float) -> void:
 	if(cooldown <= 0):
 		shoot()
-		cooldown = 1.0
+		cooldown = enemy.cooldown
 	else:
 		cooldown -= delta
 

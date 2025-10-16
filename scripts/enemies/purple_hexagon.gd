@@ -4,6 +4,8 @@ extends CharacterBody2D
 
 @onready var effect_range: Area2D = $EffectRange
 
+var cooldown: float = 0
+
 var enemy_affected: CharacterBody2D
 var closest_dist: float
 

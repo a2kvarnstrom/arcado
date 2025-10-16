@@ -16,14 +16,13 @@ extends CharacterBody2D
 
 var damage_reduction: float = 0.0
 var projectile = load("res://scenes/projectile.tscn")
-var shoot_cooldown: float = 0.0
+var cooldown: float = 0.0
 var radius: float = 80.0
 var angle: float = 0.0
 var spin_speed: float = 0.0
 var dmg: float = 10
 var d_res: float = 0.0
 var iframes: float = 0.0
-
 
 func _process(delta: float) -> void:
 	fps_counter.text = "FPS: " + str(Engine.get_frames_per_second())
@@ -39,8 +38,8 @@ func _process(delta: float) -> void:
 	if(Input.is_action_just_pressed("shoot") && Engine.time_scale == 1):
 		shoot()
 	
-	if(shoot_cooldown > 0):
-		shoot_cooldown -= delta
+	if(cooldown > 0):
+		cooldown -= delta
 	
 	if(Input.is_action_just_pressed("pause")):
 		pause()
@@ -51,7 +50,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func shoot() -> void:
-	if(shoot_cooldown > 0.0):
+	if(cooldown > 0.0):
 		return
 	
 	var direction: float = (circle.global_position - global_position).angle() + deg_to_rad(90)
@@ -60,7 +59,7 @@ func shoot() -> void:
 	for i in projectiles:
 		main.add_child.call_deferred(i)
 	
-	shoot_cooldown = 1/weapon.atk_speed
+	cooldown = 1/weapon.atk_speed
 	spin_speed = 0.3
 
 func circular_motion():

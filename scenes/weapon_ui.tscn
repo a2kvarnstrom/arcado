@@ -34,7 +34,7 @@ theme_override_constants/separation = 10
 layout_mode = 2
 theme = ExtResource("1_o8k55")
 theme_override_styles/normal = ExtResource("2_61ydt")
-text = "doble projectile gun"
+text = "trible projectile gun"
 
 [node name="HeaveBallGun" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2

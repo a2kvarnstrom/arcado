@@ -1,6 +1,10 @@
 extends CharacterBody2D
 @onready var off_screen_marker: Node2D = $OffScreenMarker
 
+@export var SPEED: float = 100
+
+var cooldown: float = 1.0
+
 func _ready() -> void:
 	off_screen_marker.color = Color.RED
 

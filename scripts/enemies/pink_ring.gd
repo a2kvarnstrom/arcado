@@ -5,7 +5,7 @@ extends CharacterBody2D
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var off_screen_marker: Node2D = $OffScreenMarker
 
-var shoot_cooldown: float = 1.0
+var cooldown: float = 1.0
 var player: CharacterBody2D 
 
 func _ready() -> void:
@@ -13,14 +13,14 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("Player")
 
 func _process(delta: float) -> void:
-	if(shoot_cooldown > 0):
-		shoot_cooldown -= delta
+	if(cooldown > 0):
+		cooldown -= delta
 	
-	if(shoot_cooldown < 0):
+	if(cooldown < 0):
 		shoot()
 
 func shoot() -> void:
-	shoot_cooldown = 2.5
+	cooldown = 2.5
 	var instance: Node = projectile.instantiate()
 	instance.dir = rotation + deg_to_rad(90)
 	instance.spawn_pos = global_position

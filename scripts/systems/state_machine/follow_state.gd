@@ -12,6 +12,7 @@ func enter() -> void:
 	player = get_tree().get_first_node_in_group("Player")
 
 func physics_update(delta: float) -> void:
+	SPEED = enemy.SPEED
 	var direction: Vector2 = player.global_position - enemy.global_position
 	if(direction.length() > stop_dist):
 		enemy.global_position = enemy.global_position.move_toward(player.global_position, SPEED * delta)

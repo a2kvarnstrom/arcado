@@ -20,10 +20,11 @@ healthbar = NodePath("../ProgressBar")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -70, 70, 70, -70, 70)
 
-[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("enemy", "health")]
 collision_layer = 4
 collision_mask = 8
 script = ExtResource("4_e6x61")
+enemy = NodePath("..")
 health = NodePath("../Health")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hurtbox"]

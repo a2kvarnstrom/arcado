@@ -2,17 +2,20 @@ extends Control
 
 @export var player: Player   
 
+func _ready() -> void:
+	player = get_tree().get_first_node_in_group("Player")
+
 func _on_toxin_pressed() -> void:
-	pass 
+	player.weapon.add_effect(Globals.EFFECTS.TOXIN) 
 
 func _on_cold_pressed() -> void:
-	pass # Replace with function body.
+	player.weapon.add_effect(Globals.EFFECTS.COLD)
 
 func _on_zap_pressed() -> void:
-	pass # Replace with function body.
+	player.weapon.add_effect(Globals.EFFECTS.ZAP)
 
 func _on_explodi_pressed() -> void:
-	pass # Replace with function body.
+	player.weapon.add_effect(Globals.EFFECTS.EXPLODE)
 
 func _on_button_pressed() -> void:
 	get_node("../VBoxContainer").visible = true

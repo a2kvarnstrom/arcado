@@ -11,6 +11,7 @@ signal health_depleted
 
 var immortality_timer: Timer = null
 var regen_timer: Timer = null
+var regen_tickrate: float = 2.0
 
 @onready var health: float = max_health : set = set_health, get = get_health
 
@@ -29,7 +30,7 @@ func _process(_delta: float) -> void:
 		healthbar.value = health
 	if(texture_healthbar != null):
 		texture_healthbar.value = health
-	if(health_regen != 0 && regen_timer.is_stopped() && health != max_health):
+	if(health_regen != 0 && regen_timer.is_stopped() && health != max_health && health != 0):
 		start_regen_timer()
 
 func start_regen_timer() -> void:
@@ -40,11 +41,11 @@ func start_regen_timer() -> void:
 	
 	if(!regen_timer.timeout.is_connected(regen)):
 		regen_timer.timeout.connect(regen)
-	regen_timer.set_wait_time(1 / health_regen)
+	regen_timer.set_wait_time(1 / regen_tickrate)
 	regen_timer.start()
 
 func regen() -> void:
-	set_health(health + 1)
+	set_health(health + health_regen)
 
 func set_max_health(value: float) -> void:
 	var clamped_value: float = 1.0 if value <= 0.0 else value
@@ -59,7 +60,6 @@ func set_max_health(value: float) -> void:
 
 func get_max_health() -> float:
 	return max_health
-
 
 func set_immortality(value: bool) -> void:
 	immortality = value
@@ -98,7 +98,6 @@ func set_health(value: float) -> void:
 
 func get_health() -> float:
 	return health
-
 
 func set_regen(value: float) -> void:
 	health_regen = value

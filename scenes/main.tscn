@@ -13,191 +13,152 @@
 
 [sub_resource type="Resource" id="Resource_y6axt"]
 script = ExtResource("2_gf43j")
-current_weapon = 0
-damage_mult = 1.0
 
 [sub_resource type="Resource" id="Resource_noe04"]
 script = ExtResource("8_1rhaj")
-enemy = 0
 amount = 2
 time = 3.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_lhi3u"]
 script = ExtResource("7_uicfu")
 enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_noe04")])
-current_sequence = 0
 
 [sub_resource type="Resource" id="Resource_502yg"]
 script = ExtResource("8_1rhaj")
 enemy = 1
 amount = 1
 time = 2.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_8n4c8"]
 script = ExtResource("8_1rhaj")
-enemy = 0
 amount = 1
 time = 2.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_6216w"]
 script = ExtResource("7_uicfu")
 enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_502yg"), SubResource("Resource_8n4c8")])
-current_sequence = 0
 
 [sub_resource type="Resource" id="Resource_h12hi"]
 script = ExtResource("8_1rhaj")
-enemy = 0
 amount = 2
 time = 2.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_s60cv"]
 script = ExtResource("8_1rhaj")
 enemy = 1
 amount = 1
 time = 3.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_5kgk1"]
 script = ExtResource("7_uicfu")
 enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_h12hi"), SubResource("Resource_s60cv")])
-current_sequence = 0
 
 [sub_resource type="Resource" id="Resource_y6bmt"]
 script = ExtResource("8_1rhaj")
-enemy = 0
 amount = 1
 time = 1.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_fy1yx"]
 script = ExtResource("8_1rhaj")
 enemy = 1
 amount = 2
 time = 5.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_chlqa"]
 script = ExtResource("7_uicfu")
 enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_y6bmt"), SubResource("Resource_fy1yx")])
-current_sequence = 0
 
 [sub_resource type="Resource" id="Resource_pi5ua"]
 script = ExtResource("8_1rhaj")
-enemy = 0
 amount = 3
 time = 5.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_2vwf7"]
 script = ExtResource("8_1rhaj")
 enemy = 1
 amount = 3
 time = 5.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_58r3t"]
 script = ExtResource("7_uicfu")
 enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_pi5ua"), SubResource("Resource_2vwf7")])
-current_sequence = 0
 
 [sub_resource type="Resource" id="Resource_2ehab"]
 script = ExtResource("8_1rhaj")
 enemy = 2
 amount = 1
 time = 1.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_vpxms"]
 script = ExtResource("7_uicfu")
 enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_2ehab")])
-current_sequence = 0
 
 [sub_resource type="Resource" id="Resource_k5fdm"]
 script = ExtResource("8_1rhaj")
 enemy = 1
 amount = 1
 time = 2.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_lnsv6"]
 script = ExtResource("8_1rhaj")
 enemy = 2
 amount = 1
 time = 3.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_wqvby"]
 script = ExtResource("8_1rhaj")
 enemy = 1
 amount = 2
 time = 1.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_gwuoj"]
 script = ExtResource("8_1rhaj")
-enemy = 0
 amount = 2
 time = 3.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_2r3ty"]
 script = ExtResource("7_uicfu")
 enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_k5fdm"), SubResource("Resource_lnsv6"), SubResource("Resource_wqvby"), SubResource("Resource_gwuoj")])
-current_sequence = 0
 
 [sub_resource type="Resource" id="Resource_6bf2c"]
 script = ExtResource("8_1rhaj")
 enemy = 2
 amount = 1
 time = 2.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_x1g4s"]
 script = ExtResource("8_1rhaj")
 enemy = 1
 amount = 3
 time = 4.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_vltxg"]
 script = ExtResource("8_1rhaj")
-enemy = 0
 amount = 2
 time = 1.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_ety5v"]
 script = ExtResource("7_uicfu")
 enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_6bf2c"), SubResource("Resource_x1g4s"), SubResource("Resource_vltxg")])
-current_sequence = 0
 
 [sub_resource type="Resource" id="Resource_66ohf"]
 script = ExtResource("8_1rhaj")
-enemy = 0
 amount = 10
 time = 5.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_we3vm"]
 script = ExtResource("7_uicfu")
 enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_66ohf")])
-current_sequence = 0
 
 [sub_resource type="Resource" id="Resource_5hkt7"]
 script = ExtResource("8_1rhaj")
 enemy = 3
 amount = 1
 time = 3.0
-difficulty = 0
 
 [sub_resource type="Resource" id="Resource_qx6gb"]
 script = ExtResource("7_uicfu")
 enemy_sequences = Array[ExtResource("8_1rhaj")]([SubResource("Resource_5hkt7")])
-current_sequence = 0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gj0ba"]
 

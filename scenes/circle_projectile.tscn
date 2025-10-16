@@ -18,6 +18,7 @@ collision_layer = 2
 script = ExtResource("2_pq80o")
 damage = 5.0
 pierce = NodePath("../Pierce")
+can_apply_status_effects = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_mivhw")
@@ -28,6 +29,7 @@ collision_mask = 9
 script = ExtResource("3_yvvyo")
 health = NodePath("../Health")
 pierce = 0
+damage_reduction = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_mivhw")
