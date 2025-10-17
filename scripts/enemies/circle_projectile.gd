@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var hitbox: Hitbox = $Hitbox
 @onready var hurtbox: Hurtbox = $Hurtbox
 
+var cooldown: float = 0
 var player: CharacterBody2D
 var dir: float
 var spawn_pos: Vector2
