@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var off_screen_marker: Node2D = $OffScreenMarker
 
+var SPEED: float = 0.0
 var cooldown: float = 1.0
 var player: CharacterBody2D 
 

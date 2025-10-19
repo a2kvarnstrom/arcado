@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 		var enemies := get_tree().current_scene.get_node("./StateMachine/EnemyWave").get_children()
 		var enemy_to_follow: CharacterBody2D
 		for enemy in enemies:
-			var dist = global_position.distance_squared_to(enemy.global_position)
+			var dist: float = global_position.distance_squared_to(enemy.global_position)
 			if(dist < closest_dist && enemy != self && !enemy.has_node("EffectRange") && enemy.get_node("./Hurtbox").damage_reduction != 100):
 				closest_dist = dist
 				enemy_to_follow = enemy

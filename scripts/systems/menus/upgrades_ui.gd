@@ -11,6 +11,8 @@ func _process(_delta: float) -> void:
 func _on_dmg_pressed() -> void:
 	player.dmg += 3
 
+func _on_def_pressed() -> void:
+	player.damage_reduction += 10
 
 func _on_hp_pressed() -> void:
 	player.health.set_max_health(player.health.get_max_health() + 5)

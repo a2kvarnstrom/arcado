@@ -4,6 +4,8 @@ extends Control
 @onready var options: PackedScene = preload("res://scenes/options.tscn")
 @onready var upgrades: PackedScene = preload("res://scenes/upgrades_ui.tscn")
 
+var add_world_env_node: bool = true
+
 var player: CharacterBody2D
 
 func _ready() -> void:
@@ -12,6 +14,8 @@ func _ready() -> void:
 func resume() -> void:
 	queue_free()
 	Engine.time_scale = 1.0
+	if(!add_world_env_node):
+		get_tree().root.get_child(1).get_node("./WorldEnvironment").queue_free()
 
 func _on_options_button_pressed() -> void:
 	menu.visible = false

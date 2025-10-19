@@ -4,6 +4,8 @@ extends Control
 @onready var credits: PackedScene = preload("res://scenes/credits.tscn")
 @onready var menu: VBoxContainer = $VBoxContainer
 
+var add_world_env_node: bool = true
+
 func _ready() -> void:
 	$VBoxContainer/VBoxContainer/StartButton.grab_focus()
 

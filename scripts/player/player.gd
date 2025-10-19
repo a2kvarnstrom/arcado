@@ -21,22 +21,26 @@ var radius: float = 80.0
 var angle: float = 0.0
 var spin_speed: float = 0.0
 var dmg: float = 10
-var d_res: float = 0.0
 var iframes: float = 0.0
+
+func _ready() -> void:
+	if(get_tree().root.get_children().size() == 2):
+		get_node("/root/main/WorldEnvironment").queue_free()
 
 func _process(delta: float) -> void:
 	fps_counter.text = "FPS: " + str(Engine.get_frames_per_second())
 	if(iframes > 0):
 		iframes -= delta
 	else:
-		hurtbox.damage_reduction = d_res
-	circular_motion()
-	
-	if(spin_speed <= 3.0):
-		spin_speed += delta * 3
+		hurtbox.damage_reduction = damage_reduction
 	 
 	if(Input.is_action_just_pressed("shoot") && Engine.time_scale == 1):
 		shoot()
+	
+	if(spin_speed <= 3.0):
+		spin_speed += delta * 3
+	
+	circular_motion()
 	
 	if(cooldown > 0):
 		cooldown -= delta
@@ -50,10 +54,8 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func shoot() -> void:
-	if(cooldown > 0.0):
-		return
-	
-	var direction: float = (circle.global_position - global_position).angle() + deg_to_rad(90)
+	if(cooldown > 0): return
+	var direction: float = circle.position.angle() + deg_to_rad(90)
 	
 	var projectiles: Array = weapon.shoot(direction, circle.global_position)
 	for i in projectiles:
