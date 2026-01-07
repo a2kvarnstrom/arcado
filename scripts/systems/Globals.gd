@@ -26,7 +26,6 @@ var player_dmg: float
 var player_dmg_changed: bool = false
 
 func toggle_shader(state: bool) -> void:
-	print_debug(state)
 	shader_state = state
 	flowerwall_pp_autoload._on_dithering_toggled(shader_state)
 	flowerwall_pp_autoload._on_preblur_toggled(shader_state)

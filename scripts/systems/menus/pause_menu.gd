@@ -14,7 +14,7 @@ func _ready() -> void:
 func resume() -> void:
 	queue_free()
 	Engine.time_scale = 1.0
-	if(!Globals.shader_state):
+	if(!Globals.shader_state && get_tree().root.get_child(2).has_node("WorldEnvironment")):
 		get_tree().root.get_child(2).get_node("./WorldEnvironment").queue_free()
 	else:
 		if(!get_tree().root.get_child(2).has_node("./WorldEnvironment")):

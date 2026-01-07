@@ -27,7 +27,8 @@ func deal_damage(hit_box: Area2D) -> void:
 	var total_dmg: float = 0.0
 	total_dmg = hit_box.damage * (100-damage_reduction)/100
 	health.set_health(health.health - total_dmg)
-	received_damage.emit(hit_box.damage)
+	received_damage.emit(total_dmg)
+	print("took dmg: ", total_dmg)
 	effects = hit_box.get_effects()
 	apply_effect(total_dmg)
 	if(hit_box.pierce):
@@ -52,6 +53,8 @@ func apply_effect(dmg: float) -> void:
 					explosion.duration = 1
 					if(dmg / 2 > 5):
 						explosion.damage = dmg / 2
+					else:
+						explosion.damage = 5
 					main.add_child.call_deferred(explosion)
 				Globals.EFFECTS.ZAP:
 					zap_stacks = zap_stacks + 1
@@ -65,4 +68,4 @@ func apply_effect(dmg: float) -> void:
 			zap.global_position = enemy.global_position
 			zap.stacks = zap_stacks
 			main.add_child.call_deferred(zap)
-			zap.damage = dmg / 4
+			zap.damage = (dmg/2)+(get_tree().get_first_node_in_group("Player").velocity.length()/100)+damage_reduction
