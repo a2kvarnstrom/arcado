@@ -11,7 +11,7 @@ func set_damage(value: float) -> void:
 	damage = value
 
 func get_damage() -> float:
-	return damage	
+	return damage
 
 func get_effects() -> Array[Globals.EFFECTS]:
 	return effects

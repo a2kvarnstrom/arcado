@@ -9,6 +9,7 @@ size = Vector2(55, 55)
 
 [node name="OrangeSquare" type="CharacterBody2D"]
 script = ExtResource("1_53byr")
+SPEED = 75.0
 
 [node name="Health" type="Node" parent="." node_paths=PackedStringArray("healthbar")]
 script = ExtResource("1_lpc4w")

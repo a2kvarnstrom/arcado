@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj3mrk8deqti"]
+
+[ext_resource type="Environment" uid="uid://beteaxg53ajp1" path="res://shaders/wolrdenv.tres" id="1_hbh1y"]
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = ExtResource("1_hbh1y")

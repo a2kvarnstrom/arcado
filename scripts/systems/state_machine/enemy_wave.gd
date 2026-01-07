@@ -28,7 +28,8 @@ var enemy_list: Array = [
 	preload("res://scenes/pink_ring.tscn"),
 	preload("res://scenes/yellow_triangle.tscn"),
 	preload("res://scenes/purple_hexagon.tscn"),
-	preload("res://scenes/orange_square.tscn")
+	preload("res://scenes/orange_square.tscn"),
+	preload("res://scenes/boss_guy_1.tscn")
 ]
 
 var enum_enemies: Dictionary = {
@@ -38,11 +39,17 @@ var enum_enemies: Dictionary = {
 	3: Global.ENEMIES["PINK_RING"],
 	4: Global.ENEMIES["YELLOW_TRIANGLE"],
 	5: Global.ENEMIES["PURPLE_HEXAGON"],
-	6: Global.ENEMIES["ORANGE_SQUARE"]
+	6: Global.ENEMIES["ORANGE_SQUARE"],
+	7: Global.ENEMIES["BOSS_1"]
 }
 
 func enter() -> void:
 	player = get_tree().get_first_node_in_group("Player")
+	if(Globals.wave_changed):
+		current_wave = Globals.current_wave - 1
+		Globals.wave_changed = false
+		if(current_wave > waves.size()):
+			current_wave = waves.size()-1
 	current_sequence = waves[current_wave].get_current_sequence()
 	amount_left = current_sequence.amount
 	time_left = current_sequence.time / amount_left
@@ -56,6 +63,8 @@ func update(delta: float) -> void:
 	wave_timer -= delta
 	progress.value = wave_timer
 	progress_text.text = str("%.2f" % (progress.value)) + "/" + str(int(progress.max_value)) + " seconds left"
+	if(Globals.wave_changed):
+		transitioned.emit(self, "GameIdle")
 
 func physics_update(delta: float) -> void:
 	if(amount_left == 0):
@@ -102,12 +111,14 @@ func spawn_enemy(delta: float) -> void:
 		spawn_timer -= delta
 
 func create_random_wave() -> void:
+	Globals.enemy_hp_scaling *= 4
 	var xtra_wave: Wave = Wave.new()
 	for i in range(randi_range(1, 5)):
 		var temp_sequence: EnemySequence = EnemySequence.new()
-		temp_sequence.amount = randi_range(1, 5)
-		temp_sequence.time = temp_sequence.amount * randf_range(0.5, 3)
-		temp_sequence.enemy = enum_enemies[randi_range(0, (enemy_list.size()-1))]
+		#temp_sequence.amount = randi_range(1, 5)
+		#temp_sequence.time = temp_sequence.amount * randf_range(0.5, 3)
+		#temp_sequence.enemy = enum_enemies[randi_range(0, (enemy_list.size()-2))]
+		temp_sequence = auto_gen_enemy_sequences[randi_range(0, auto_gen_enemy_sequences.size()-1)]
 		xtra_wave.enemy_sequences.push_back(temp_sequence)
 	waves.push_back(xtra_wave)
 

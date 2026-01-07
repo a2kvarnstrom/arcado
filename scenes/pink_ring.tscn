@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cj6kq3ictlcit" path="res://scripts/systems/entity/hurtbox.gd" id="4_1qa1g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5dx4l"]
-radius = 30.0
+radius = 40.0
 
 [node name="PinkRing" type="CharacterBody2D"]
 script = ExtResource("1_0tot6")

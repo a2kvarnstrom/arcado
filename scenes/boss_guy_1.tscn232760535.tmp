@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnicc1lfy0i8s"]
+
+[ext_resource type="Script" uid="uid://cj6kq3ictlcit" path="res://scripts/systems/entity/hurtbox.gd" id="1_3ma3b"]
+[ext_resource type="Script" uid="uid://cus4kp3pwxbdo" path="res://scripts/enemies/boss_guy_1.gd" id="1_ysfni"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ysfni"]
+height = 300.0
+
+[node name="BossGuy1" type="CharacterBody2D"]
+script = ExtResource("1_ysfni")
+
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("enemy")]
+script = ExtResource("1_3ma3b")
+enemy = NodePath("..")
+metadata/_custom_type_script = "uid://cj6kq3ictlcit"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_ysfni")

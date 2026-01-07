@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnicc1lfy0i8s"]
+
+[ext_resource type="Script" uid="uid://cj6kq3ictlcit" path="res://scripts/systems/entity/hurtbox.gd" id="1_3ma3b"]
+[ext_resource type="Script" uid="uid://cus4kp3pwxbdo" path="res://scripts/enemies/boss_guy_1.gd" id="1_ysfni"]
+[ext_resource type="Script" uid="uid://bu565kalhpyh2" path="res://scripts/systems/entity/health.gd" id="3_brpy4"]
+[ext_resource type="Script" uid="uid://r4mivdeuyesd" path="res://scripts/systems/entity/hitbox.gd" id="4_7lhm0"]
+[ext_resource type="Script" uid="uid://cqk2ryqnnffsg" path="res://scripts/systems/state_machine/state_machine.gd" id="5_o0gac"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ysfni"]
+radius = 20.0
+height = 600.0
+
+[node name="BossGuy1" type="CharacterBody2D"]
+script = ExtResource("1_ysfni")
+
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("enemy", "health")]
+script = ExtResource("1_3ma3b")
+enemy = NodePath("..")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://cj6kq3ictlcit"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_ysfni")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_brpy4")
+max_health = 350.0
+metadata/_custom_type_script = "uid://bu565kalhpyh2"
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("4_7lhm0")
+damage = 10.0
+metadata/_custom_type_script = "uid://r4mivdeuyesd"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_ysfni")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("5_o0gac")
+metadata/_custom_type_script = "uid://cqk2ryqnnffsg"

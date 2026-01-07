@@ -40,13 +40,11 @@ func _physics_process(delta: float) -> void:
 func _on_effect_range_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if(!enemy_affected && !body.has_node("EffectRange")):
 		if(!body.has_method("pause") && body.has_node("Health") && body.get_node("./Hurtbox").damage_reduction != 100):
-			print_debug("body enter :D")
 			enemy_affected = body
 			enemy_affected.get_node("./Hurtbox").damage_reduction = 100
 
 func _on_effect_range_body_shape_exited(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if(body == enemy_affected && enemy_affected):
-		print_debug("body exit D:")
 		enemy_affected.get_node("./Hurtbox").damage_reduction = 0.0
 		enemy_affected = null
 

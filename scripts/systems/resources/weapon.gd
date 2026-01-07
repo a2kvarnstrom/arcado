@@ -38,7 +38,7 @@ func set_weapon(weapon: Globals.WEAPONS) -> void:
 			projectile_speed = 500.0
 			angles = [0.0]
 		
-		Globals.WEAPONS.DOUBLE:
+		Globals.WEAPONS.TRIPLE:
 			dmg = 7.5 * damage_mult
 			pierce = 1
 			projectile = Globals.PROJECTILES.REGULAR
@@ -73,7 +73,6 @@ func set_weapon(weapon: Globals.WEAPONS) -> void:
 
 func add_effect(effect: Globals.EFFECTS) -> void:
 	current_effects.append(effect)
-	print(current_effects)
 
 func remove_effect(index: int) -> void:
 	current_effects.remove_at(index)

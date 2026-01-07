@@ -1,0 +1,15 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://beteaxg53ajp1"]
+
+[sub_resource type="Gradient" id="Gradient_6bo3b"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rupqn"]
+gradient = SubResource("Gradient_6bo3b")
+
+[resource]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.15
+glow_blend_mode = 0
+fog_light_color = Color(1, 1, 1, 1)
+fog_sun_scatter = 0.95
+adjustment_color_correction = SubResource("GradientTexture1D_rupqn")

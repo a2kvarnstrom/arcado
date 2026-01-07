@@ -11,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_m6lnw")
 script = ExtResource("1_f2nhr")
 
 [node name="Label" type="Label" parent="."]
@@ -22,16 +23,57 @@ theme_override_font_sizes/font_size = 150
 text = "Options"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 0
 offset_top = 250.0
 offset_right = 1920.0
-offset_bottom = 850.0
+offset_bottom = 317.0
+current_tab = 0
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="Video" type="TabBar" parent="TabContainer"]
 layout_mode = 2
 theme = ExtResource("2_m6lnw")
-text = "Turn Off Shaders"
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Video"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ShaderToggle" type="CheckButton" parent="TabContainer/Video/MarginContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Shaders "
+
+[node name="Debug" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Debug"]
+layout_mode = 0
+offset_right = 218.0
+offset_bottom = 67.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Debug/MarginContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="TabContainer/Debug/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "---- WAVES ----"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Debug/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Debug/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Wave: "
+
+[node name="WaveInput" type="SpinBox" parent="TabContainer/Debug/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+max_value = 99999999999999.0
+rounded = true
+update_on_text_changed = true
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
@@ -43,5 +85,6 @@ theme_override_font_sizes/font_size = 150
 theme_override_styles/normal = ExtResource("3_202s5")
 text = "BACK"
 
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="toggled" from="TabContainer/Video/MarginContainer/ShaderToggle" to="." method="_on_shader_toggle_toggled"]
+[connection signal="value_changed" from="TabContainer/Debug/MarginContainer/VBoxContainer/HBoxContainer/WaveInput" to="." method="_on_wave_input_value_changed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

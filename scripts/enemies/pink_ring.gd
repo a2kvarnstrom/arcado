@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var projectile = load("res://scenes/circle_projectile.tscn")
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var off_screen_marker: Node2D = $OffScreenMarker
+@onready var health: Health = $Health
 
 var SPEED: float = 0.0
 var cooldown: float = 1.0

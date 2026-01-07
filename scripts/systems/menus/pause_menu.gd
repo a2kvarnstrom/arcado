@@ -3,8 +3,8 @@ extends Control
 @onready var menu: VBoxContainer = $VBoxContainer
 @onready var options: PackedScene = preload("res://scenes/options.tscn")
 @onready var upgrades: PackedScene = preload("res://scenes/upgrades_ui.tscn")
+@onready var shader: ColorRect = $ColorRect
 
-var add_world_env_node: bool = true
 
 var player: CharacterBody2D
 
@@ -14,8 +14,11 @@ func _ready() -> void:
 func resume() -> void:
 	queue_free()
 	Engine.time_scale = 1.0
-	if(!add_world_env_node):
-		get_tree().root.get_child(1).get_node("./WorldEnvironment").queue_free()
+	if(!Globals.shader_state):
+		get_tree().root.get_child(2).get_node("./WorldEnvironment").queue_free()
+	else:
+		if(!get_tree().root.get_child(2).has_node("./WorldEnvironment")):
+			get_tree().root.get_child(2).add_child.call_deferred(load("res://scenes/world_environment.tscn").instantiate())
 
 func _on_options_button_pressed() -> void:
 	menu.visible = false

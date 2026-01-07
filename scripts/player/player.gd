@@ -96,4 +96,4 @@ func _on_death_reset_timeout() -> void:
 
 func _on_health_health_changed(_diff: float) -> void:
 	hurtbox.damage_reduction = 100.0
-	iframes = 1
+	iframes = 0.4

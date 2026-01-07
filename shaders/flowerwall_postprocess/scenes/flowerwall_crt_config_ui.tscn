@@ -52,6 +52,7 @@ offset_bottom = 86.0
 grow_horizontal = 2
 item_count = 5
 popup/item_0/text = "Sharp"
+popup/item_0/id = 0
 popup/item_1/text = "Crisp low-res"
 popup/item_1/id = 1
 popup/item_2/text = "Sharp CRT"
@@ -366,7 +367,7 @@ size_flags_vertical = 3
 min_value = 0.05
 max_value = 5.0
 step = 0.05
-value = 0.4
+value = 0.39999999999999997
 script = ExtResource("9_tuipt")
 mytext = NodePath("../../Number/Vignette smoothness Number")
 

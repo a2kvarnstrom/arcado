@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 	if(direction.length() > stop_dist):
 		global_position = global_position.move_toward(player.global_position, SPEED * delta)
 	
-	var angle_to_player: float = global_position.direction_to(player.global_position).angle()
+	var angle_to_player: float = global_position.direction_to(player.global_position).angle() + deg_to_rad(90)
 	rotation = angle_to_player
 
 func _process(delta: float) -> void:

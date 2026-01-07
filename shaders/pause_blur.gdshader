@@ -9,7 +9,7 @@ shader_type canvas_item;
 
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture,repeat_disable, filter_nearest;
 uniform float sigma: hint_range(0.1, 20.0) = 3.3; // Limited to 20 because of performance, if you want feel free to break it.
-
+uniform bool blur = true;
 
 float gaussianDistribution(float x, float STD){ // STD stands for standard deviation
 	return exp(-(x*x)/(2.*STD*STD))/(sqrt(2.*PI)*STD);
@@ -37,7 +37,9 @@ vec3 gaussianblur(sampler2D sampler, vec2 pos, vec2 pixel_size, float sigmaUsed,
     return blurredPixel;
 }
 void fragment() {
-    vec3 PixelBlurred = gaussianblur(SCREEN_TEXTURE, SCREEN_UV, SCREEN_PIXEL_SIZE, sigma, int(round(3.0 * sigma)));
-    // The radius is 3*Sigma because it is the point where the Gaussian weight is near zero.
-    COLOR = vec4(PixelBlurred, 1.);
+    if(blur) {
+		vec3 PixelBlurred = gaussianblur(SCREEN_TEXTURE, SCREEN_UV, SCREEN_PIXEL_SIZE, sigma, int(round(3.0 * sigma)));
+		// The radius is 3*Sigma because it is the point where the Gaussian weight is near zero.
+		COLOR = vec4(PixelBlurred, 1);
+	}
 }

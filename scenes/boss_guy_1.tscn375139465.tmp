@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnicc1lfy0i8s"]
+
+[ext_resource type="Script" uid="uid://cj6kq3ictlcit" path="res://scripts/systems/entity/hurtbox.gd" id="1_3ma3b"]
+[ext_resource type="Script" uid="uid://cus4kp3pwxbdo" path="res://scripts/enemies/boss_guy_1.gd" id="1_ysfni"]
+[ext_resource type="Script" uid="uid://bu565kalhpyh2" path="res://scripts/systems/entity/health.gd" id="3_brpy4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ysfni"]
+height = 300.0
+
+[node name="BossGuy1" type="CharacterBody2D"]
+script = ExtResource("1_ysfni")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 180.0
+offset_right = 100.0
+offset_bottom = 207.0
+grow_horizontal = 2
+
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("enemy")]
+script = ExtResource("1_3ma3b")
+enemy = NodePath("..")
+metadata/_custom_type_script = "uid://cj6kq3ictlcit"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_ysfni")
+
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("healthbar")]
+script = ExtResource("3_brpy4")
+max_health = 350.0
+healthbar = NodePath("../HealthBar")
+metadata/_custom_type_script = "uid://bu565kalhpyh2"

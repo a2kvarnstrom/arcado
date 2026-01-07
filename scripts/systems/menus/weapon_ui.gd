@@ -8,7 +8,7 @@ func _ready() -> void:
 
 
 func _on_doble_project_gun_pressed() -> void:
-	player.weapon.set_weapon(Globals.WEAPONS.DOUBLE)
+	player.weapon.set_weapon(Globals.WEAPONS.TRIPLE)
 
 
 func _on_heave_ball_gun_pressed() -> void:
