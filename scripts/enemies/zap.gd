@@ -13,7 +13,7 @@ var duration_timer: Timer = null
 @export var duration: float = 1.0
 
 func _draw() -> void:
-	draw_string(load("res://fonts/RETROTECH.ttf"), Vector2.ZERO, "skåle")
+	draw_string(load("res://fonts/RETROTECH.ttf"), Vector2.ZERO, "zap")
 
 func _ready() -> void:
 	get_node("Hitbox").set_damage(damage)

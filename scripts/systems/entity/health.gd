@@ -23,7 +23,6 @@ func _ready() -> void:
 		healthbar.max_value = max_health
 	if(texture_healthbar):
 		texture_healthbar.max_value = max_health
-	set_max_health(get_max_health() * Globals.enemy_hp_scaling)
 	start_regen_timer()
 
 func _process(_delta: float) -> void:

@@ -111,7 +111,7 @@ func spawn_enemy(delta: float) -> void:
 		spawn_timer -= delta
 
 func create_random_wave() -> void:
-	Globals.enemy_hp_scaling *= 4
+	Globals.enemy_hp_scaling *= 1.04
 	var xtra_wave: Wave = Wave.new()
 	for i in range(randi_range(1, 5)):
 		var temp_sequence: EnemySequence = EnemySequence.new()

@@ -16,9 +16,8 @@ func resume() -> void:
 	Engine.time_scale = 1.0
 	if(!Globals.shader_state && get_tree().root.get_child(2).has_node("WorldEnvironment")):
 		get_tree().root.get_child(2).get_node("./WorldEnvironment").queue_free()
-	else:
-		if(!get_tree().root.get_child(2).has_node("./WorldEnvironment")):
-			get_tree().root.get_child(2).add_child.call_deferred(load("res://scenes/world_environment.tscn").instantiate())
+	elif(!get_tree().root.get_child(2).has_node("./WorldEnvironment") && Globals.shader_state):
+		get_tree().root.get_child(2).add_child.call_deferred(load("res://scenes/world_environment.tscn").instantiate())
 
 func _on_options_button_pressed() -> void:
 	menu.visible = false

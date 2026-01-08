@@ -17,6 +17,9 @@ var effects: Array[Globals.EFFECTS]
 
 func _ready() -> void:
 	connect("area_entered", _on_area_entered)
+	damage_reduction = 100-(100/Globals.enemy_hp_scaling)
+	print_debug(damage_reduction)
+	
 
 func _on_area_entered(hit_box: Area2D) -> void:
 	if(hit_box != null && can_take_damage):
