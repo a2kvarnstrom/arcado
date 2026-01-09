@@ -8,7 +8,7 @@ extends State
 var player: CharacterBody2D
 @onready var cooldown: float = enemy.cooldown
 
-func enter() -> void:
+func enter(_value: String) -> void:
 	player = get_tree().get_first_node_in_group("Player")
 	enemy.velocity = Vector2(0.0, 0.0)
 

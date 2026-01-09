@@ -6,7 +6,7 @@ extends State
 
 var cooldown: float = 3.0
 
-func enter() -> void:
+func enter(_value: String) -> void:
 	progress.max_value = cooldown
 
 func update(delta: float) -> void:

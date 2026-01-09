@@ -8,7 +8,7 @@ extends State
 @export var rotation_offset: float = 0.0
 var player: CharacterBody2D
 
-func enter() -> void:
+func enter(_value: String) -> void:
 	player = get_tree().get_first_node_in_group("Player")
 
 func physics_update(delta: float) -> void:

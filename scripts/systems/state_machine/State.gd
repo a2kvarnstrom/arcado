@@ -1,9 +1,9 @@
 class_name State
 extends Node
 
-signal transitioned
+signal transitioned(value: String)
 
-func enter() -> void:
+func enter(_value: String) -> void:
 	pass
 
 func exit() -> void:

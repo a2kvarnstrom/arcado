@@ -9,16 +9,20 @@ signal received_damage(damage: float)
 @export var health: Health
 @export var pierce: int = 1
 @export var damage_reduction: float = 0.0
+@export var can_pierce: bool = true
 
 var explosion_scene: PackedScene = preload("res://scenes/explosion.tscn")
 var zap_scene: PackedScene = preload("res://scenes/zap.tscn")
 var can_take_damage: bool = true
 var effects: Array[Globals.EFFECTS]
 
+var zap_cooldown_timer: Timer = null
+var zap_cooldown: float = 0.4
+
 func _ready() -> void:
 	connect("area_entered", _on_area_entered)
 	damage_reduction = 100-(100/Globals.enemy_hp_scaling)
-	print_debug(damage_reduction)
+	print("dr: ", damage_reduction)
 	
 
 func _on_area_entered(hit_box: Area2D) -> void:
@@ -72,3 +76,16 @@ func apply_effect(dmg: float) -> void:
 			zap.stacks = zap_stacks
 			main.add_child.call_deferred(zap)
 			zap.damage = (dmg/2)+(get_tree().get_first_node_in_group("Player").velocity.length()/100)+damage_reduction
+			zap_cooldown_timer = Timer.new()
+			zap_cooldown_timer.one_shot = true
+			add_child(zap_cooldown_timer)
+			zap_cooldown_timer.timeout.connect(self_destruct)
+			zap_cooldown_timer.set_wait_time(zap_cooldown)
+			zap_cooldown_timer.start()
+
+func self_destruct() -> void:
+	if(effects.has(Globals.EFFECTS.ZAP)):
+		for i in range(effects.size()-1):
+			if(effects[i] == Globals.EFFETCS.ZAP):
+				effects.remove_at(i)
+	print_debug(effects)

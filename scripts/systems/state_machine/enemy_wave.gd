@@ -43,7 +43,7 @@ var enum_enemies: Dictionary = {
 	7: Global.ENEMIES["BOSS_1"]
 }
 
-func enter() -> void:
+func enter(_value: String) -> void:
 	player = get_tree().get_first_node_in_group("Player")
 	if(Globals.wave_changed):
 		current_wave = Globals.current_wave - 1
@@ -64,7 +64,7 @@ func update(delta: float) -> void:
 	progress.value = wave_timer
 	progress_text.text = str("%.2f" % (progress.value)) + "/" + str(int(progress.max_value)) + " seconds left"
 	if(Globals.wave_changed):
-		transitioned.emit(self, "GameIdle")
+		transitioned.emit(self, "GameIdle", str(waves[current_wave].get_total_enemy_count()))
 
 func physics_update(delta: float) -> void:
 	if(amount_left == 0):
@@ -85,7 +85,7 @@ func update_wave() -> void:
 		
 		current_sequence = waves[current_wave].get_current_sequence()
 		amount_left = current_sequence.amount
-		transitioned.emit(self, "GameIdle")
+		transitioned.emit(self, "GameIdle", str(waves[current_wave-1].get_total_enemy_count()))
 		return
 	
 	#new sequence

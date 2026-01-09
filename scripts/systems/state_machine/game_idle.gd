@@ -8,9 +8,10 @@ extends State
 @export var max_cooldown: float = 3.0
 var cooldown = max_cooldown
 
-func enter() -> void:
+func enter(value: String) -> void:
 	cooldown = 3.0
-	progress.max_value = enemy_count.enemy_count
+	progress.max_value = value.to_int()
+	
 
 func update(delta: float) -> void:
 	if(enemy_count.enemy_count != 0):

@@ -21,7 +21,7 @@ func _ready() -> void:
 	var distances: Array[Array]
 	for i in enemies:
 		if(!i.get_node("Hurtbox").effects.has(Globals.EFFECTS.ZAP)):
-			distances.append([i, global_position.distance_squared_to(i.global_position)])
+			distances.append([i, global_position.distance_squared_to(global_position)])
 	distances.sort_custom(sort_ascending)
 	if(distances.size() > 1):
 		var enemy_to_zap: CharacterBody2D = distances[1][0]
