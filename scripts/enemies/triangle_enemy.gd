@@ -20,7 +20,7 @@ func _draw() -> void:
 	draw_dashed_line(Vector2(0.0, 0.0), Vector2(0.0, -5000.0), Color.GREEN, 2.5, 15.0, true, true)
 
 func _process(delta: float) -> void:
-	if((Input.is_action_pressed("up") || Input.is_action_pressed("down") || Input.is_action_pressed("left") || Input.is_action_pressed("right")) && cooldown <= 0):
+	if(player.velocity != Vector2.ZERO && cooldown <= 0):
 		# shoot only if player move
 		laser.enable()
 	else:
@@ -33,6 +33,22 @@ func _process(delta: float) -> void:
 	rotation += deg_to_rad(90 * delta)
 
 func _physics_process(delta: float) -> void:
-	var direction: Vector2 = player.global_position - global_position
-	if(direction.length() > stop_dist):
-		position = position.move_toward(player.global_position, SPEED * delta)
+	position = position.move_toward(find_furthest_point(player.position, position), SPEED * delta)
+	velocity = Vector2.ZERO
+	move_and_slide()
+
+func find_furthest_point(pos1: Vector2, pos2: Vector2) -> Vector2:
+	var corners: Array[Vector2] = [Vector2(800, 400), Vector2(-800, 400), Vector2(-800, -400), Vector2(800, -400)]
+	var x: int = sign(pos2.x - pos1.x)
+	var y: int = sign(pos2.y - pos1.y)
+	if(x == -1):
+		if(y == -1):
+			return corners[2]
+		if(y == 1):
+			return corners[1]
+	if(x == 1):
+		if(y == -1):
+			return corners[3]
+		if(y == 1):
+			return corners[0]
+	return corners[0]

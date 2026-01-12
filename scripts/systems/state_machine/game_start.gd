@@ -7,6 +7,7 @@ extends State
 var cooldown: float = 3.0
 
 func enter(_value: String) -> void:
+	Globals.enemy_hp_scaling = 1.0
 	progress.max_value = cooldown
 
 func update(delta: float) -> void:

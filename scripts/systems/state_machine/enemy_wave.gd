@@ -48,8 +48,8 @@ func enter(_value: String) -> void:
 	if(Globals.wave_changed):
 		current_wave = Globals.current_wave - 1
 		Globals.wave_changed = false
-		if(current_wave > waves.size()):
-			current_wave = waves.size()-1
+		while(current_wave > waves.size()-1):
+			create_random_wave()
 	current_sequence = waves[current_wave].get_current_sequence()
 	amount_left = current_sequence.amount
 	time_left = current_sequence.time / amount_left
@@ -111,7 +111,6 @@ func spawn_enemy(delta: float) -> void:
 		spawn_timer -= delta
 
 func create_random_wave() -> void:
-	Globals.enemy_hp_scaling *= 1.04
 	var xtra_wave: Wave = Wave.new()
 	for i in range(randi_range(1, 5)):
 		var temp_sequence: EnemySequence = EnemySequence.new()
@@ -121,6 +120,7 @@ func create_random_wave() -> void:
 		temp_sequence = auto_gen_enemy_sequences[randi_range(0, auto_gen_enemy_sequences.size()-1)]
 		xtra_wave.enemy_sequences.push_back(temp_sequence)
 	waves.push_back(xtra_wave)
+	Globals.enemy_hp_scaling *= 1.04
 
 func restart():
 	transitioned.emit(self, "GameStart")

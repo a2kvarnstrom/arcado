@@ -13,24 +13,25 @@ var duration_timer: Timer = null
 @export var duration: float = 1.0
 
 func _draw() -> void:
-	draw_string(load("res://fonts/RETROTECH.ttf"), Vector2.ZERO, "zap")
+	draw_string(load("res://fonts/RETROTECH.ttf"), Vector2.ZERO, "skåle")
 
 func _ready() -> void:
+	if(stacks == 0):
+		return
 	get_node("Hitbox").set_damage(damage)
 	var enemies := get_tree().current_scene.get_node("./StateMachine/EnemyWave").get_children()
 	var distances: Array[Array]
 	for i in enemies:
 		if(!i.get_node("Hurtbox").effects.has(Globals.EFFECTS.ZAP)):
-			distances.append([i, global_position.distance_squared_to(global_position)])
+			distances.append([i, global_position.distance_squared_to(i.global_position)])
 	distances.sort_custom(sort_ascending)
 	if(distances.size() > 1):
 		var enemy_to_zap: CharacterBody2D = distances[1][0]
-		if(stacks > 0):
-			var zap: Zap = zap_scene.instantiate()
-			zap.stacks = stacks - 1
-			zap.damage = damage
-			zap.global_position = enemy_to_zap.global_position
-			main.add_child.call_deferred(zap)
+		var zap: Zap = zap_scene.instantiate()
+		zap.stacks = stacks - 1
+		zap.damage = damage
+		zap.global_position = enemy_to_zap.global_position
+		main.add_child.call_deferred(zap)
 	duration_timer = Timer.new()
 	duration_timer.one_shot = true
 	add_child(duration_timer)

@@ -13,6 +13,7 @@ extends CharacterBody2D
 
 @export var SPEED: float = 300.0
 @export var weapon: Weapon
+@export var Abilities: Array[Ability]
 
 var damage_reduction: float = 0.0
 var projectile = load("res://scenes/projectile.tscn")
@@ -22,6 +23,10 @@ var angle: float = 0.0
 var spin_speed: float = 0.0
 var dmg: float = 10
 var iframes: float = 0.0
+
+var dash_velocity: float = 0.0
+var dash_rotation: Vector2 = Vector2.ZERO
+var dash_cooldown = 0.5
 
 func _ready() -> void:
 	if(get_tree().root.get_children().size() == 2):
@@ -44,12 +49,21 @@ func _process(delta: float) -> void:
 	
 	if(cooldown > 0):
 		cooldown -= delta
-	
+	if(dash_cooldown > 0):
+		dash_cooldown -= delta
 	if(Input.is_action_just_pressed("pause")):
 		pause()
 
 func _physics_process(delta: float) -> void:
-	velocity = Vector2.ZERO.direction_to(Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))) * SPEED * delta * 60
+	if(Input.is_action_just_pressed("dash") && dash_cooldown < 0):
+		dash_velocity = 500
+		dash_rotation = velocity.normalized()
+		dash_cooldown = 0.5
+	var direction: Vector2 = Vector2.ZERO.direction_to(Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down")))
+	velocity = direction * SPEED * delta * 60
+	if(dash_velocity > 0):
+		velocity += dash_rotation * dash_velocity
+		dash_velocity -= delta * 500
 	if(Engine.time_scale == 1.0):
 		move_and_slide()
 
@@ -96,4 +110,4 @@ func _on_death_reset_timeout() -> void:
 
 func _on_health_health_changed(_diff: float) -> void:
 	hurtbox.damage_reduction = 100.0
-	iframes = 0.25
+	iframes = 0.35
