@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var fps_counter: Label = $"../CanvasLayer/FpsCounter"
 @onready var canvas_layer: CanvasLayer = $"../CanvasLayer"
 @onready var pause_menu: PackedScene = preload("res://scenes/pause_menu.tscn")
+@onready var bullet_pool: BulletPool = %BulletPool
 
 @export var SPEED: float = 300.0
 @export var weapon: Weapon
@@ -71,9 +72,9 @@ func shoot() -> void:
 	if(cooldown > 0): return
 	var direction: float = circle.position.angle() + deg_to_rad(90)
 	
-	var projectiles: Array = weapon.shoot(direction, circle.global_position)
-	for i in projectiles:
-		main.add_child.call_deferred(i)
+	var bullet: Array[Dictionary] = weapon.shoot(direction, circle.global_position)
+	for i in bullet:
+		bullet_pool.spawn_bullet(i.type, i.pos, i.dir, i.dmg, i.zdex)
 	
 	cooldown = 1/weapon.atk_speed
 	spin_speed = 0.3

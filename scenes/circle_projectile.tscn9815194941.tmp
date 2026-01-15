@@ -9,15 +9,16 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_mivhw"]
 radius = 15.0
 
-[node name="CircleProjectile" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
+[node name="CircleProjectile" type="CharacterBody2D"]
 script = ExtResource("1_pg2s0")
-hitbox = NodePath("Hitbox")
-speed = 150.0
-damage = 5.0
-lifespan = 10.0
-can_take_damage = true
-homing = true
-color = Color(0.6591482, 0.78818816, 0.9681179, 1)
+SPEED = 150.0
+color = null
+lifespan = null
+homing = null
+can_take_damage = null
+growing = null
+dmg = null
+speed = null
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("pierce")]
 collision_layer = 2

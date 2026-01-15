@@ -1,15 +1,6 @@
-extends CharacterBody2D
-
-@export var SPEED: float = 300
-@export var color: Color = Color.CORNFLOWER_BLUE
-@export var lifespan: float = 10.0
-@export var homing: bool = true
-@export var can_take_damage: bool = true
-@export var growing: bool = false
-@export var dmg: float = 5.0
+extends Bullet
 
 @onready var pierce: Pierce = $Pierce
-@onready var hitbox: Hitbox = $Hitbox
 @onready var hurtbox: Hurtbox = $Hurtbox
 
 var cooldown: float = 0
@@ -20,7 +11,7 @@ var spawn_rot: float
 var zdex: int
 
 func _ready() -> void:
-	hitbox.set_damage(dmg)
+	hitbox.set_damage(damage)
 	player = get_tree().get_first_node_in_group("Player")
 	hurtbox.can_take_damage = can_take_damage
 	global_position = spawn_pos
@@ -37,9 +28,9 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if(homing):
 		look_at(player.global_position)
-		position = position.move_toward(player.global_position, SPEED * delta)
+		position = position.move_toward(player.global_position, speed * delta)
 	else:
-		velocity = Vector2(0,-SPEED).rotated(dir) * (delta * 60)
+		velocity = Vector2(0,-speed).rotated(dir) * (delta * 60)
 	move_and_slide()
 
 func _draw() -> void:

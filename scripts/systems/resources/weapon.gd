@@ -15,11 +15,6 @@ var projectile_speed: float = 500.0
 var current_effects: Array[Globals.EFFECTS]
 var angles: Array[float] = [0.0]
 
-var projectile_list: Array = [
-	preload("res://scenes/projectile.tscn"),
-	preload("res://scenes/circle_projectile.tscn")
-]
-
 func get_weapon() -> Globals.WEAPONS:
 	return current_weapon
 
@@ -81,37 +76,31 @@ func get_effect() -> Array[Globals.EFFECTS]:
 	print(current_effects)
 	return current_effects
 
-func shoot(direction: float, proj_pos: Vector2) -> Array[CharacterBody2D]:
-	var instance: PackedScene = projectile_list[projectile]
-	var instance_array: Array[CharacterBody2D]
-	
+func shoot(direction: float, proj_pos: Vector2) -> Array[Dictionary]:
+	var dir: float
+	var spawn_rot: float
+	var growing: bool
+	var return_val: Array[Dictionary]
 	for i in range(projectile_count):
-		instance_array.append(instance.instantiate())
-	
-	for i in instance_array:
-		i.dir = direction + deg_to_rad(angles[instance_array.find(i)])
-		i.spawn_rot = i.dir + deg_to_rad(90)
-		i.get_node("Hitbox").effects = current_effects
-		i.spawn_pos = proj_pos
-		i.zdex = -1
-		i.lifespan = lifespan
-		i.get_node("Hitbox").set_collision_layer_value(4, true)
-		i.get_node("Hitbox").set_collision_layer_value(2, false)
-		i.get_node("Hitbox").set_collision_mask_value(3, true)
-		i.get_node("Hitbox").set_collision_mask_value(1, false)
-		i.dmg = dmg
-		i.scale = Vector2(projectile_size, projectile_size)
-		i.SPEED = projectile_speed
-		i.find_child("Pierce").set_max_pierce(pierce)
-		match(current_weapon):
-			Globals.WEAPONS.GROWING:
-				i.growing = true
-				i.can_take_damage = false
-				i.homing = false
-				i.color = Color.WHITE
-			
-			Globals.WEAPONS.HEAVY:
-				i.can_take_damage = false
-				i.homing = false
-				i.color = Color.WHITE
-	return instance_array
+		dir = direction + deg_to_rad(angles[i])
+		spawn_rot = dir + deg_to_rad(90)
+		if(!current_weapon == Globals.WEAPONS.GROWING):
+			growing = false
+		else:
+			growing = true
+		return_val.append({
+			"type": projectile,
+			"dir": dir, 
+			"rot": spawn_rot, 
+			"fx": current_effects, 
+			"pos": proj_pos, 
+			"zdex": -1, 
+			"life": lifespan, 
+			"layer": 4, 
+			"mask": 3, 
+			"dmg": dmg, 
+			"scale": Vector2(projectile_size, projectile_size), 
+			"speed": projectile_speed, 
+			"growing": growing
+			})
+	return return_val

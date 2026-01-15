@@ -11,6 +11,7 @@ radius = 15.0
 
 [node name="CircleProjectile" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
 script = ExtResource("1_pg2s0")
+dmg = null
 hitbox = NodePath("Hitbox")
 speed = 150.0
 damage = 5.0
@@ -18,6 +19,7 @@ lifespan = 10.0
 can_take_damage = true
 homing = true
 color = Color(0.6591482, 0.78818816, 0.9681179, 1)
+growing = null
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("pierce")]
 collision_layer = 2

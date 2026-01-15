@@ -7,8 +7,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8q0j"]
 size = Vector2(32, 12)
 
-[node name="Projectile" type="CharacterBody2D"]
+[node name="Projectile" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
 script = ExtResource("1_mo4i7")
+hitbox = NodePath("Hitbox")
+speed = 500.0
+color = Color(1, 1, 1, 1)
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("pierce")]
 collision_layer = 2

@@ -1,7 +1,15 @@
 class_name Bullet
 extends CharacterBody2D
 
+@export var hitbox: Hitbox
+
 @export var speed: float = 300.0
+@export var damage: float = 10.0
+@export var lifespan: float = 2.5
+@export var can_take_damage: bool = false
+@export var homing: bool = false
+@export var color: Color
+@export var growing: bool = false
 
 var direction: Vector2 = Vector2.ZERO
 
@@ -10,10 +18,12 @@ var active: bool = false
 func enter() -> void:
 	pass
 
-func enable(pos: Vector2, dir: Vector2) -> void:
+func enable(spawn_pos: Vector2, spawn_rot: Vector2, dmg: float, zdex: int) -> void:
+	hitbox.damage = dmg
+	z_index = zdex
 	active = true
-	global_position = pos
-	direction = dir.normalized()
+	global_position = spawn_pos
+	direction = spawn_rot.normalized()
 	visible = true
 	set_process(true)
 
